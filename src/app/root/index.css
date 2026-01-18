@@ -128,4 +128,12 @@
     background-size: cover;
     background-position: center;
   }
+
+  .instructionSection{
+    background-image: url("/images/homePage/instructionSection.webp");
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+  }
 }
