@@ -2,6 +2,7 @@ import type React from "react";
 import NavigationBar from "../../components/navbar/content";
 import { Button } from "../../components/ui/button";
 import { useLocation } from "react-router-dom";
+import Footer from "@/components/footer/content";
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   const { pathname } = useLocation();
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         )}
       </div>
       <div className="w-4/5 mx-auto my-10">{children}</div>
-      {/* <Footer/> */}
+      <Footer />
     </main>
   );
 }

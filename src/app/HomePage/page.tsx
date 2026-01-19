@@ -17,6 +17,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { useState } from "react";
 
 const dataGamesPopular = [
   {
@@ -58,6 +68,22 @@ const dataGamesPopular = [
 ];
 
 export default function HomePage() {
+  const ITEMS_PER_PAGE = 3;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(dataGamesPopular.length / ITEMS_PER_PAGE);
+
+  const paginatedData = dataGamesPopular.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE,
+  );
+
+  const chunkedGames: propsCoverGame[][] = [];
+
+  for (let i = 0; i < paginatedData.length; i += 3) {
+    chunkedGames.push(paginatedData.slice(i, i + 3));
+  }
+
   return (
     <RootLayout>
       <div>
@@ -95,9 +121,99 @@ export default function HomePage() {
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <div>untuk hasilsnya</div>
+            <div className="flex gap-x-5 my-5">
+              <div className="basis-1/5">
+                <h2 className="text-xl font-medium border border-slate-400 px-5 py-2 border-b-0 bg-slate-300">
+                  Genre Games
+                </h2>
+                <ul className="flex flex-col gap-y-2 border border-slate-400 px-5 py-3 bg-slate-100">
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Action</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Adventure</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">RPG</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Racing</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Horor</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Strategy</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Sports</label>
+                  </li>
+                  <li className="flex items-center gap-x-2">
+                    <Input type="checkbox" className="size-4" />
+                    <label htmlFor="">Simulation</label>
+                  </li>
+                </ul>
+              </div>
+              <div className="basis-4/5 flex flex-col gap-y-6">
+                {chunkedGames.map((row, i) => (
+                  <div
+                    key={i}
+                    className="grid grid-cols-3 place-items-center gap-x-5"
+                  >
+                    {row.map((item, j) => (
+                      <CoverGames
+                        key={j}
+                        srcImg={item.srcImg}
+                        altImg={item.altImg}
+                        rating={item.rating}
+                        genre={item.genre}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    className={
+                      currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                    }
+                  />
+                </PaginationItem>
+                {[...Array(totalPages)].map((_, i) => (
+                  <PaginationItem key={i}>
+                    <PaginationLink
+                      isActive={currentPage === i + 1}
+                      onClick={() => setCurrentPage(i + 1)}
+                    >
+                      {i + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() =>
+                      setCurrentPage((p) => Math.min(p + 1, totalPages))
+                    }
+                    className={
+                      currentPage === totalPages
+                        ? "pointer-events-none opacity-50"
+                        : ""
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           </div>
 
           <div className="mt-7">
