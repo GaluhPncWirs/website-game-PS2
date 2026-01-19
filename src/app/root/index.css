@@ -136,4 +136,12 @@
     background-size: cover;
     background-position: center;
   }
+
+  .linkFooter{
+    @apply hover:underline hover:text-blue-500
+  }
+
+  .imgFooterSocialMedia{
+    @apply w-11 bg-slate-300 rounded-full p-1.5 grayscale-50 hover:grayscale-0
+  }
 }

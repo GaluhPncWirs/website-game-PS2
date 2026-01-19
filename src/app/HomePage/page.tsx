@@ -86,175 +86,179 @@ export default function HomePage() {
 
   return (
     <RootLayout>
-      <div>
-        <h1 className="font-semibold tracking-wide text-3xl">Popular Games</h1>
-        <div className="mt-5">
-          <div className="flex gap-5 items-center overflow-x-auto pb-3">
-            {dataGamesPopular.map((item: propsCoverGame, i: number) => (
-              <CoverGames
-                key={i}
-                srcImg={item.srcImg}
-                altImg={item.altImg}
-                rating={item.rating}
-                genre={item.genre}
-              />
-            ))}
+      <h1 className="font-semibold tracking-wide text-3xl">Popular Games</h1>
+      <div className="mt-5">
+        <div className="flex gap-5 items-center overflow-x-auto pb-3">
+          {dataGamesPopular.map((item: propsCoverGame, i: number) => (
+            <CoverGames
+              key={i}
+              srcImg={item.srcImg}
+              altImg={item.altImg}
+              rating={item.rating}
+              genre={item.genre}
+            />
+          ))}
+        </div>
+
+        <div className="mt-7">
+          <div className="flex justify-between items-center mb-3">
+            <h1 className="text-2xl font-semibold tracking-wide">
+              List Games PS2
+            </h1>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Sort By" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="mostDownloaded">
+                    Most Downloaded
+                  </SelectItem>
+                  <SelectItem value="newest">Newest</SelectItem>
+                  <SelectItem value="topRated">Top Rated</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex gap-x-5 my-5">
+            <div className="basis-1/5">
+              <h2 className="text-xl font-medium border border-slate-400 px-5 py-2 border-b-0 bg-slate-300">
+                Genre Games
+              </h2>
+              <ul className="flex flex-col gap-y-2 border border-slate-400 px-5 py-3 bg-slate-100">
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Action</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Adventure</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">RPG</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Racing</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Horor</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Strategy</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Sports</label>
+                </li>
+                <li className="flex items-center gap-x-2">
+                  <Input type="checkbox" className="size-4" />
+                  <label htmlFor="">Simulation</label>
+                </li>
+              </ul>
+            </div>
+            <div className="basis-4/5 flex flex-col gap-y-6">
+              {chunkedGames.map((row, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-3 place-items-center gap-x-5"
+                >
+                  {row.map((item, j) => (
+                    <CoverGames
+                      key={j}
+                      srcImg={item.srcImg}
+                      altImg={item.altImg}
+                      rating={item.rating}
+                      genre={item.genre}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-7">
-            <div className="flex justify-between items-center mb-3">
-              <h1 className="text-2xl font-semibold tracking-wide">
-                List Games PS2
-              </h1>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Sort By" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="mostDownloaded">
-                      Most Downloaded
-                    </SelectItem>
-                    <SelectItem value="newest">Newest</SelectItem>
-                    <SelectItem value="topRated">Top Rated</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex gap-x-5 my-5">
-              <div className="basis-1/5">
-                <h2 className="text-xl font-medium border border-slate-400 px-5 py-2 border-b-0 bg-slate-300">
-                  Genre Games
-                </h2>
-                <ul className="flex flex-col gap-y-2 border border-slate-400 px-5 py-3 bg-slate-100">
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Action</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Adventure</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">RPG</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Racing</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Horor</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Strategy</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Sports</label>
-                  </li>
-                  <li className="flex items-center gap-x-2">
-                    <Input type="checkbox" className="size-4" />
-                    <label htmlFor="">Simulation</label>
-                  </li>
-                </ul>
-              </div>
-              <div className="basis-4/5 flex flex-col gap-y-6">
-                {chunkedGames.map((row, i) => (
-                  <div
-                    key={i}
-                    className="grid grid-cols-3 place-items-center gap-x-5"
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                  className={
+                    currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                  }
+                />
+              </PaginationItem>
+              {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    isActive={currentPage === i + 1}
+                    onClick={() => setCurrentPage(i + 1)}
                   >
-                    {row.map((item, j) => (
-                      <CoverGames
-                        key={j}
-                        srcImg={item.srcImg}
-                        altImg={item.altImg}
-                        rating={item.rating}
-                        genre={item.genre}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious
-                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                    className={
-                      currentPage === 1 ? "pointer-events-none opacity-50" : ""
-                    }
-                  />
+                    {i + 1}
+                  </PaginationLink>
                 </PaginationItem>
-                {[...Array(totalPages)].map((_, i) => (
-                  <PaginationItem key={i}>
-                    <PaginationLink
-                      isActive={currentPage === i + 1}
-                      onClick={() => setCurrentPage(i + 1)}
-                    >
-                      {i + 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
-                <PaginationItem>
-                  <PaginationNext
-                    onClick={() =>
-                      setCurrentPage((p) => Math.min(p + 1, totalPages))
-                    }
-                    className={
-                      currentPage === totalPages
-                        ? "pointer-events-none opacity-50"
-                        : ""
-                    }
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </div>
+              ))}
+              <PaginationItem>
+                <PaginationNext
+                  onClick={() =>
+                    setCurrentPage((p) => Math.min(p + 1, totalPages))
+                  }
+                  className={
+                    currentPage === totalPages
+                      ? "pointer-events-none opacity-50"
+                      : ""
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+        {/* 
+        <div className="mt-7">
+          <h1 className="font-semibold text-2xl">Tags Games</h1>
+          <div>
 
-          <div className="mt-7">
-            <div className="instructionSection text-slate-100 tracking-wide h-40 rounded-t-md flex flex-col justify-center items-center gap-y-3">
-              <h1 className="font-semibold text-3xl">
-                Easy Downloads Game PS2
+          </div>
+        </div> */}
+
+        <div className="mt-10">
+          <div className="instructionSection text-slate-100 tracking-wide h-40 rounded-t-md flex flex-col justify-center items-center gap-y-3">
+            <h1 className="font-semibold text-3xl">Easy Downloads Game PS2</h1>
+            <h3 className="text-lg font-medium">
+              Revive Your Gaming Memories, Now Easier Than Ever
+            </h3>
+          </div>
+          <div className="flex items-center justify-between">
+            <BenefitDownloadGame>
+              <Download />
+              <h1 className="text-xl font-semibold tracking-wide">
+                Fast Download
               </h1>
-              <h3 className="text-lg font-medium">
-                Revive Your Gaming Memories, Now Easier Than Ever
-              </h3>
-            </div>
-            <div className="flex items-center justify-between">
-              <BenefitDownloadGame>
-                <Download />
-                <h1 className="text-xl font-semibold tracking-wide">
-                  Fast Download
-                </h1>
-                <p>fast and stable download process</p>
-              </BenefitDownloadGame>
-              <BenefitDownloadGame>
-                <GitCompareArrows />
-                <h1 className="text-xl font-semibold tracking-wide">
-                  Compatibility
-                </h1>
-                <p>compatible with various devices and OS</p>
-              </BenefitDownloadGame>
-              <BenefitDownloadGame>
-                <SearchCheck />
-                <h1 className="text-xl font-semibold tracking-wide">
-                  Safe & Secure
-                </h1>
-                <p>Keep your Producing by playing</p>
-              </BenefitDownloadGame>
-              <BenefitDownloadGame>
-                <Gamepad2 />
-                <h1 className="text-xl font-semibold tracking-wide">
-                  Install Game
-                </h1>
-                <p>Learn Run to install, and enjoy</p>
-              </BenefitDownloadGame>
-            </div>
+              <p>fast and stable download process</p>
+            </BenefitDownloadGame>
+            <BenefitDownloadGame>
+              <GitCompareArrows />
+              <h1 className="text-xl font-semibold tracking-wide">
+                Compatibility
+              </h1>
+              <p>compatible with various devices and OS</p>
+            </BenefitDownloadGame>
+            <BenefitDownloadGame>
+              <SearchCheck />
+              <h1 className="text-xl font-semibold tracking-wide">
+                Safe & Secure
+              </h1>
+              <p>Keep your Producing by playing</p>
+            </BenefitDownloadGame>
+            <BenefitDownloadGame>
+              <Gamepad2 />
+              <h1 className="text-xl font-semibold tracking-wide">
+                Install Game
+              </h1>
+              <p>Learn Run to install, and enjoy</p>
+            </BenefitDownloadGame>
           </div>
         </div>
       </div>
