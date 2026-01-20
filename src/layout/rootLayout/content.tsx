@@ -4,19 +4,26 @@ import { Button } from "../../components/ui/button";
 import { useLocation } from "react-router-dom";
 import Footer from "@/components/footer/content";
 
-export default function RootLayout({ children }: React.PropsWithChildren) {
+type propsRootLayout = {
+  titlePage: string;
+  descPage: string;
+  children: React.ReactNode;
+};
+
+export default function RootLayout(props: propsRootLayout) {
+  const { titlePage, descPage, children } = props;
   const { pathname } = useLocation();
   return (
     <main>
       <NavigationBar />
-      <div className="heroSection h-120 flex flex-col justify-center px-16 gap-y-4">
-        <h1 className="font-bold text-4xl tracking-wider">
-          Download Games PS2 Here !!!
+      <div className="heroSection h-100 flex flex-col justify-center px-16 gap-y-4">
+        <h1 className="font-bold text-4xl tracking-wider text-shadow-lg text-shadow-slate-300">
+          {titlePage}
         </h1>
-        <h3 className="font-semibold text-xl tracking-wide">
-          Classic PlayStation 2 Games, Ready to Play on Your PC
+        <h3 className="font-semibold text-xl tracking-wide text-shadow-lg text-shadow-slate-300">
+          {descPage}
         </h3>
-        {pathname === "/" && (
+        {pathname === "/HomePage" && (
           <div className="flex gap-x-5">
             <Button>Browse Games</Button>
             <Button variant="outline">Emulator Support</Button>
