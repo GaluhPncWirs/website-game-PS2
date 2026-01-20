@@ -12,25 +12,22 @@ export type propsCoverGameWithDesc = {
 export default function CoverGameWithDesc(props: propsCoverGameWithDesc) {
   const { srcImg, altImg, gameName, rating, genre } = props;
   return (
-    <div className="min-w-60">
-      <img src={srcImg} alt={altImg} className="w-fit" />
-      <div className="border border-slate-400 p-3">
-        <h1 className="text-xl tracking-wide font-semibold leading-snug">
+    <div className="min-w-60 h-full flex flex-col">
+      <img src={srcImg} alt={altImg} className="w-full object-cover" />
+      <div className="border border-slate-400 p-3 flex flex-col flex-1">
+        <h1 className="text-xl tracking-wide font-semibold leading-snug line-clamp-1">
           {gameName}
         </h1>
-        <div className="grid grid-cols-2 gap-3 w-2/3 mt-3 place-items-center">
-          <div className="bg-blue-400 text-center rounded-md py-1 px-3 font-semibold">
-            <h1>Hype</h1>
-          </div>
+        <div className="flex flex-col gap-y-1 mt-1.5">
           <h2>{genre}</h2>
           <div className="flex items-center gap-x-2">
             <Heart />
             <h2>{rating}K</h2>
+            <div className="h-full w-0.5 bg-slate-400" />
+            <h2>Rating</h2>
           </div>
-
-          <h2>Rating</h2>
         </div>
-        <Button className="w-full mt-5">Download</Button>
+        <Button className="w-full mt-3">Download</Button>
       </div>
     </div>
   );

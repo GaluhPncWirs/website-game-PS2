@@ -8,35 +8,14 @@ import {
   GitCompareArrows,
   SearchCheck,
 } from "lucide-react";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import BenefitDownloadGame from "@/layout/benefitDownload/content";
 import { dataGamesPopular } from "@/data/dataGame/datas";
 import AllGamePS2 from "@/layout/allGamePS2/content";
+import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
-import { useState } from "react";
 
 export default function HomePage() {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemPerPage = 3;
-  const totalPages = Math.ceil(dataGamesPopular.length / itemPerPage);
-
-  const paginatedData = dataGamesPopular.slice(
-    (currentPage - 1) * itemPerPage,
-    currentPage * itemPerPage,
-  );
-
-  const chunkedGames: propsCoverGame[][] = [];
-
-  for (let i = 0; i < dataGamesPopular.length; i += 3) {
-    chunkedGames.push(paginatedData.slice(i, i + 3));
-  }
+  const chunkedGames = useHandlePagination((state) => state.dataGames);
   return (
     <RootLayout
       titlePage="Download Games PS2 Here !!!"
@@ -56,7 +35,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <AllGamePS2>
+        <AllGamePS2 itemPerPage={3}>
           <div className="flex gap-x-5 my-7">
             <div className="basis-1/5">
               <GenreGames />
@@ -80,41 +59,6 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                  className={
-                    currentPage === 1 ? "pointer-events-none opacity-50" : ""
-                  }
-                />
-              </PaginationItem>
-              {[...Array(totalPages)].map((_, i) => (
-                <PaginationItem key={i}>
-                  <PaginationLink
-                    isActive={currentPage === i + 1}
-                    onClick={() => setCurrentPage(i + 1)}
-                  >
-                    {i + 1}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
-              <PaginationItem>
-                <PaginationNext
-                  onClick={() =>
-                    setCurrentPage((p) => Math.min(p + 1, totalPages))
-                  }
-                  className={
-                    currentPage === totalPages
-                      ? "pointer-events-none opacity-50"
-                      : ""
-                  }
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
         </AllGamePS2>
 
         <div className="mt-10">
