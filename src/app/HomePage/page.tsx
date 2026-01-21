@@ -19,7 +19,7 @@ export default function HomePage() {
   return (
     <RootLayout
       titlePage="Download Games PS2 Here !!!"
-      descPage="Classic PlayStation 2 Games, Ready to Play on Your PC"
+      descPage="Classic playStation 2 games, ready to play on your PC or handphone"
     >
       <h1 className="font-semibold tracking-wide text-3xl">Popular Games</h1>
       <div className="mt-5">

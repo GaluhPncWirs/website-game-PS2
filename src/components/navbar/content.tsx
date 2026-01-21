@@ -30,8 +30,8 @@ export default function NavigationBar() {
         <Link to="/AllGames" className="cursor-pointer">
           All Games
         </Link>
-        <Link to="#" className="cursor-pointer">
-          Guide Install
+        <Link to="/EmulatorGuide" className="cursor-pointer">
+          Emulator Guide
         </Link>
         <Link to="#" className="cursor-pointer">
           Contact

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import HomePage from "../HomePage/page";
 import AllGames from "../AllGames/page";
+import EmulatorGuide from "../EmulatorGuide/page";
 
 const rootApp = createRoot(document.getElementById("root")!);
 
@@ -23,6 +24,10 @@ const routePages = createBrowserRouter([
   {
     path: "/AllGames",
     element: <AllGames />,
+  },
+  {
+    path: "/EmulatorGuide",
+    element: <EmulatorGuide />,
   },
 ]);
 
