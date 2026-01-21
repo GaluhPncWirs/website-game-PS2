@@ -8,11 +8,13 @@ import {
 } from "react-router-dom";
 import HomePage from "../HomePage/page";
 import AllGames from "../AllGames/page";
-import EmulatorGuide from "../EmulatorGuide/page";
+import EmulatorGuide from "../EmulatorGuide/layout";
+// import SetupEmulator from "../EmulatorGuide/SetupEmulator/page";
+// import EmulatorGuidePage from "../EmulatorGuide/layout";
 
 const rootApp = createRoot(document.getElementById("root")!);
 
-const routePages = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     loader: () => redirect("/HomePage"),
@@ -28,11 +30,21 @@ const routePages = createBrowserRouter([
   {
     path: "/EmulatorGuide",
     element: <EmulatorGuide />,
+    // children: [
+    //   {
+    //     index: true,
+    //     element: <EmulatorGuide />,
+    //   },
+    //   {
+    //     path: "SetupEmulator",
+    //     element: <SetupEmulator />,
+    //   },
+    // ],
   },
 ]);
 
 rootApp.render(
   <StrictMode>
-    <RouterProvider router={routePages} />
+    <RouterProvider router={router} />
   </StrictMode>,
 );

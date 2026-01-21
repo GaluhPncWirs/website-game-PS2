@@ -1,17 +1,24 @@
-import { Button } from "@/components/ui/button";
 import type React from "react";
+import { Link } from "react-router-dom";
 
 type propsPS2EmuOverview = {
   emulatorImg: string;
   emulatorAlt: string;
   nameEmulator: string;
   descEmulator: string;
+  href: string;
   children: React.ReactNode;
 };
 
 export default function PS2EmuOverview(props: propsPS2EmuOverview) {
-  const { emulatorImg, emulatorAlt, nameEmulator, descEmulator, children } =
-    props;
+  const {
+    emulatorImg,
+    emulatorAlt,
+    nameEmulator,
+    descEmulator,
+    href,
+    children,
+  } = props;
   return (
     <div className="w-xs h-full flex flex-col">
       <img
@@ -27,7 +34,12 @@ export default function PS2EmuOverview(props: propsPS2EmuOverview) {
           <p className="text-justify">{descEmulator}</p>
         </div>
         <div className="flex flex-wrap gap-3">{children}</div>
-        <Button className="w-full">Setup Guide</Button>
+        <Link
+          to={href}
+          className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
+        >
+          Setup Guide
+        </Link>
       </div>
     </div>
   );

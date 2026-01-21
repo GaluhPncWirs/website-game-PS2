@@ -14,7 +14,7 @@ export default function RootLayout(props: propsRootLayout) {
   const { titlePage, descPage, children } = props;
   const { pathname } = useLocation();
   return (
-    <main>
+    <div>
       <NavigationBar />
       <div className="heroSection h-100 flex flex-col justify-center px-16 gap-y-4">
         <h1 className="font-bold text-4xl tracking-wider text-shadow-lg text-shadow-slate-300 max-w-2xl">
@@ -32,6 +32,6 @@ export default function RootLayout(props: propsRootLayout) {
       </div>
       <div className="w-4/5 mx-auto my-10">{children}</div>
       <Footer />
-    </main>
+    </div>
   );
 }
