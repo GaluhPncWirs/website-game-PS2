@@ -13,6 +13,8 @@ import { dataGamesPopular } from "@/data/dataGame/datas";
 import AllGamePS2 from "@/layout/allGamePS2/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
+import { Link } from "react-router-dom";
+import PS2EmuOverview from "@/layout/PS2EmuOverview/content";
 
 export default function HomePage() {
   const chunkedGames = useHandlePagination((state) => state.dataGames);
@@ -60,6 +62,30 @@ export default function HomePage() {
             </div>
           </div>
         </AllGamePS2>
+
+        <div className="mt-10">
+          <h1>PS2 Emulators</h1>
+          <p>
+            Select form a list of popular emulators that support playing
+            playstation 2 games on multiple platforms.
+          </p>
+          <div>
+            <PS2EmuOverview
+              emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
+              emulatorAlt="PCSX2"
+              nameEmulator="PCSX2"
+              descEmulator="The most popular and compatible PS2 emulator for multiple
+                    platforms."
+            >
+              <Link
+                to="/EmulatorGuide/SetupEmulator"
+                className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
+              >
+                Download
+              </Link>
+            </PS2EmuOverview>
+          </div>
+        </div>
 
         <div className="mt-10">
           <div className="instructionSection text-slate-100 tracking-wide h-40 rounded-t-md flex flex-col justify-center items-center gap-y-3">
