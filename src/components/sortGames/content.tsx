@@ -10,7 +10,7 @@ import {
 export default function SortGames() {
   return (
     <div className="flex justify-between items-center mb-3">
-      <h1 className="text-2xl font-semibold tracking-wide">List Games PS2</h1>
+      <h1 className="text-3xl font-semibold tracking-wide">List Games PS2</h1>
       <Select>
         <SelectTrigger>
           <SelectValue placeholder="Sort By" />

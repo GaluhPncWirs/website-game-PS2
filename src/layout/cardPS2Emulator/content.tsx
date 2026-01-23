@@ -8,7 +8,7 @@ type propsPS2EmuOverview = {
   children: React.ReactNode;
 };
 
-export default function PS2EmuOverview(props: propsPS2EmuOverview) {
+export default function CardPS2Emulator(props: propsPS2EmuOverview) {
   const { emulatorImg, emulatorAlt, nameEmulator, descEmulator, children } =
     props;
   return (

@@ -6,10 +6,10 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import GuidesEmulator from "@/layout/guidesEmu/content";
-import PS2EmuOverview from "@/layout/PS2EmuOverview/content";
 import RootLayout from "@/layout/rootLayout/content";
 import { Gamepad2, Monitor, Wrench } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
+import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 
 export default function EmulatorGuide() {
   return (
@@ -27,7 +27,7 @@ export default function EmulatorGuide() {
             emulator has it`s own features and strengths, download here.
           </p>
           <div className="grid grid-cols-3 place-items-center gap-3 mt-5">
-            <PS2EmuOverview
+            <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
               emulatorAlt="PCSX2"
               nameEmulator="PCSX2"
@@ -63,8 +63,8 @@ export default function EmulatorGuide() {
               >
                 Setup Guide
               </Link>
-            </PS2EmuOverview>
-            <PS2EmuOverview
+            </CardPS2Emulator>
+            <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/aetherSX2-logo.png"
               emulatorAlt="AetherSX2"
               nameEmulator="AetherSX2"
@@ -114,8 +114,8 @@ export default function EmulatorGuide() {
               >
                 Setup Guide
               </Link>
-            </PS2EmuOverview>
-            <PS2EmuOverview
+            </CardPS2Emulator>
+            <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/damonPS2-logo.png"
               emulatorAlt="DamonPS2"
               nameEmulator="DamonPS2"
@@ -144,7 +144,7 @@ export default function EmulatorGuide() {
               >
                 Setup Guide
               </Link>
-            </PS2EmuOverview>
+            </CardPS2Emulator>
           </div>
         </div>
         <div className="mt-7">

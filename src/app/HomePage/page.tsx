@@ -14,7 +14,7 @@ import AllGamePS2 from "@/layout/allGamePS2/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
 import { Link } from "react-router-dom";
-import PS2EmuOverview from "@/layout/PS2EmuOverview/content";
+import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 
 export default function HomePage() {
   const chunkedGames = useHandlePagination((state) => state.dataGames);
@@ -64,13 +64,15 @@ export default function HomePage() {
         </AllGamePS2>
 
         <div className="mt-10">
-          <h1>PS2 Emulators</h1>
-          <p>
+          <h1 className="text-3xl font-semibold tracking-wide">
+            PS2 Emulators
+          </h1>
+          <p className="mt-3 text-lg">
             Select form a list of popular emulators that support playing
             playstation 2 games on multiple platforms.
           </p>
-          <div>
-            <PS2EmuOverview
+          <div className="grid grid-cols-3 place-items-center mt-5">
+            <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
               emulatorAlt="PCSX2"
               nameEmulator="PCSX2"
@@ -78,12 +80,41 @@ export default function HomePage() {
                     platforms."
             >
               <Link
-                to="/EmulatorGuide/SetupEmulator"
+                to="https://pcsx2.net/downloads/"
+                target="_blank"
                 className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
               >
                 Download
               </Link>
-            </PS2EmuOverview>
+            </CardPS2Emulator>
+            <CardPS2Emulator
+              emulatorImg="/images/emulatorGuidePage/aetherSX2-logo.png"
+              emulatorAlt="AetherSX2"
+              nameEmulator="AetherSX2"
+              descEmulator="Android exclusive emulator focused on high compability and performance"
+            >
+              <Link
+                to="https://pcsx2.net/downloads/"
+                target="_blank"
+                className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
+              >
+                Download
+              </Link>
+            </CardPS2Emulator>
+            <CardPS2Emulator
+              emulatorImg="/images/emulatorGuidePage/damonPS2-logo.png"
+              emulatorAlt="DamonPS2"
+              nameEmulator="DamonPS2"
+              descEmulator="the most popular PS2 emulator offering the best compability"
+            >
+              <Link
+                to="https://pcsx2.net/downloads/"
+                target="_blank"
+                className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
+              >
+                Download
+              </Link>
+            </CardPS2Emulator>
           </div>
         </div>
 
