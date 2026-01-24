@@ -121,6 +121,10 @@
     @apply bg-background text-foreground;
   }
 
+  label{
+    @apply inline-block mb-1.5 font-medium tracking-wide
+  }
+
   .heroSection{
     background-image: url("/images/homePage/heroSection.webp");
     background-repeat: no-repeat;

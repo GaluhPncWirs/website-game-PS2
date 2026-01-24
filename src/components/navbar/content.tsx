@@ -33,7 +33,7 @@ export default function NavigationBar() {
         <Link to="/EmulatorGuide" className="cursor-pointer">
           Emulator Guide
         </Link>
-        <Link to="#" className="cursor-pointer">
+        <Link to="/Contact" className="cursor-pointer">
           Contact
         </Link>
       </div>

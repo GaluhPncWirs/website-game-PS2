@@ -1,7 +1,6 @@
 import type React from "react";
 import NavigationBar from "../../components/navbar/content";
-import { Button } from "../../components/ui/button";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Footer from "@/components/footer/content";
 
 type propsRootLayout = {
@@ -17,16 +16,26 @@ export default function RootLayout(props: propsRootLayout) {
     <div>
       <NavigationBar />
       <div className="heroSection h-100 flex flex-col justify-center px-16 gap-y-4">
-        <h1 className="font-bold text-4xl tracking-wider text-shadow-lg text-shadow-slate-300 max-w-2xl">
+        <h1 className="font-bold text-4xl tracking-wider text-shadow-sm text-shadow-blue-100 max-w-2xl">
           {titlePage}
         </h1>
-        <h3 className="font-semibold text-xl tracking-wide text-shadow-lg text-shadow-slate-300 max-w-2xl">
+        <h3 className="font-semibold text-xl tracking-wide text-shadow-sm text-shadow-blue-100 max-w-2xl">
           {descPage}
         </h3>
         {pathname === "/HomePage" && (
-          <div className="flex gap-x-5">
-            <Button>Browse Games</Button>
-            <Button variant="outline">Emulator Support</Button>
+          <div className="flex gap-x-5 font-semibold tracking-wide">
+            <Link
+              to="/AllGames"
+              className="bg-blue-500 text-slate-100 px-5 py-1.5 rounded-md"
+            >
+              Browse Games
+            </Link>
+            <Link
+              to="/EmulatorGuide"
+              className="bg-blue-100 px-5 py-1.5 rounded-md"
+            >
+              Emulator Support
+            </Link>
           </div>
         )}
       </div>
