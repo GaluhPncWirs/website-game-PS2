@@ -148,4 +148,31 @@
   .imgFooterSocialMedia{
     @apply w-11 bg-slate-300 rounded-full p-1.5 grayscale-50 hover:grayscale-0
   }
+
+  /* hamburger menu */
+
+  .hamburgerMenu span:nth-child(2){
+    transform-origin: 0 0;
+  }
+
+  .hamburgerMenu span:nth-child(4){
+    transform-origin: 0 100%;
+  }
+
+  .hamburgerMenu input:checked ~ span:nth-child(2){
+    background-color:  red;
+    transform: rotate(45deg);
+    translate: 0px 1px;
+  }
+
+  .hamburgerMenu input:checked ~ span:nth-child(3){
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  .hamburgerMenu input:checked ~ span:nth-child(4){
+    background-color:  red;
+    transform: rotate(-45deg);
+    translate: 0px -2px;
+  }
 }

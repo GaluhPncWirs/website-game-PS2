@@ -4,6 +4,11 @@ import { Textarea } from "@/components/ui/textarea";
 import RootLayout from "@/layout/rootLayout/content";
 
 export default function Contact() {
+  function handleSubmitMessage(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const targetValueInput = event.target as HTMLFormElement;
+    console.log(targetValueInput.message.value);
+  }
   return (
     <RootLayout
       titlePage="Contact Us"
@@ -11,18 +16,21 @@ export default function Contact() {
     >
       <h1 className="text-3xl font-semibold tracking-wide mb-5">Reach out</h1>
       <div className="flex items-center justify-around bg-slate-50 rounded-md border-2 border-slate-700">
-        <form className="w-1/2 flex flex-col gap-y-3 justify-center">
+        <form
+          className="w-1/2 flex flex-col gap-y-3 justify-center"
+          onSubmit={(e) => handleSubmitMessage(e)}
+        >
           <div>
             <label htmlFor="">Fullname</label>
-            <Input type="text" placeholder="jhonDoe" />
+            <Input type="text" placeholder="jhonDoe" id="fullname" />
           </div>
           <div>
             <label htmlFor="">Email Address</label>
-            <Input type="email" placeholder="jhonDoe@gmail.com" />
+            <Input type="email" placeholder="jhonDoe@gmail.com" id="email" />
           </div>
           <div>
             <label htmlFor="">Message</label>
-            <Textarea placeholder="Write your message here..." />
+            <Textarea placeholder="Write your message here..." id="message" />
           </div>
           <div>
             <Button type="submit" className="bg-blue-500 mb-2">
