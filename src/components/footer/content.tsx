@@ -1,4 +1,4 @@
-import { Mail, MailIcon, PhoneCall } from "lucide-react";
+import { Mail, PhoneCall } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -7,13 +7,13 @@ export default function Footer() {
       <div className="w-11/12 mx-auto text-slate-100 pt-5">
         <div className="mb-5">
           <div className="flex items-center gap-x-5">
-            <img src="/images/global/logoApp.png" alt="Logo" className="w-60" />
+            <img src="/images/global/logoApp.png" alt="Logo" className="w-56" />
             <div className="w-0.5 h-14 bg-slate-600" />
             <h3 className="text-lg md:text-xl font-semibold tracking-wider">
               A secure and fast PS2 game download platform
             </h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 mt-5 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-7">
             <div>
               <h1 className="mb-3 font-medium text-xl tracking-wide">
                 Category

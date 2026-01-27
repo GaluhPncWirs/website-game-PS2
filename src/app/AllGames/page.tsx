@@ -3,12 +3,14 @@ import RootLayout from "@/layout/rootLayout/content";
 import CoverGameWithDesc from "@/components/coverGameWithDesc/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
+import { useMediaQuery } from "@/hooks/mediaQuerry";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataGames);
   const alphabeth = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i),
   );
+  const isMediaQuery = useMediaQuery();
   return (
     <RootLayout
       titlePage="All PS2 Games"

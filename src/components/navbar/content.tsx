@@ -23,7 +23,7 @@ export default function NavigationBar() {
     >
       <img src="/images/global/logoApp.png" alt="Logo" className="w-52" />
       <HamburgerMenu />
-      <div className="hidden font-semibold text-xl tracking-wide justify-around w-3/4 md:flex">
+      <div className="hidden font-semibold text-xl justify-around items-center w-3/4 md:flex xl:text-2xl">
         <ListNavigation />
       </div>
     </nav>

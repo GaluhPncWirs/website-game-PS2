@@ -15,9 +15,12 @@ import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
 import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
+import { useMediaQuery } from "@/hooks/mediaQuerry";
 
 export default function HomePage() {
   const chunkedGames = useHandlePagination((state) => state.dataGames);
+  const isMediaQuery = useMediaQuery();
+
   return (
     <RootLayout
       titlePage="Download Games PS2 Here !!!"
@@ -26,6 +29,7 @@ export default function HomePage() {
       <h1 className="font-semibold tracking-wide text-3xl mb-5">
         Popular Games
       </h1>
+
       <div className="flex gap-5 items-center overflow-x-auto pb-3">
         {dataGamesPopular.map((item: propsCoverGame, i: number) => (
           <CoverGames
@@ -38,16 +42,16 @@ export default function HomePage() {
         ))}
       </div>
 
-      <AllGamePS2 itemPerPage={3}>
+      <AllGamePS2 itemPerPage={isMediaQuery ? 2 : 3}>
         <div className="flex flex-col md:flex-row gap-5 my-7">
-          <div className="md:w-1/5">
+          <div className="md:w-72">
             <GenreGames />
           </div>
-          <div className="md:w-4/5">
+          <div className="w-fit">
             {chunkedGames.map((row, i) => (
               <div
                 key={i}
-                className="grid grid-cols-2 md:grid-cols-3 place-items-center gap-5"
+                className="grid grid-cols-2 lg:grid-cols-3 place-items-center gap-5"
               >
                 {row.map((item, j) => (
                   <CoverGames
@@ -70,7 +74,7 @@ export default function HomePage() {
           Select form a list of popular emulators that support playing
           playstation 2 games on multiple platforms.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 place-items-center mt-5 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-5 gap-5">
           <CardPS2Emulator
             emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
             emulatorAlt="PCSX2"
