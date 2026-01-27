@@ -15,11 +15,11 @@ export default function RootLayout(props: propsRootLayout) {
   return (
     <div>
       <NavigationBar />
-      <div className="heroSection h-100 flex flex-col justify-center px-16 gap-y-4">
-        <h1 className="font-bold text-4xl tracking-wider text-shadow-sm text-shadow-blue-100 max-w-2xl">
+      <div className="heroSection h-100 flex flex-col justify-center px-5 gap-y-4 md:px-16">
+        <h1 className="font-bold tracking-wider text-shadow-sm text-shadow-blue-100 text-3xl max-w-sm md:text-4xl md:max-w-2xl">
           {titlePage}
         </h1>
-        <h3 className="font-semibold text-xl tracking-wide text-shadow-sm text-shadow-blue-100 max-w-2xl">
+        <h3 className="font-semibold text-xl tracking-wide text-shadow-sm text-shadow-blue-100 md:max-w-2xl">
           {descPage}
         </h3>
         {pathname === "/HomePage" && (
@@ -39,7 +39,7 @@ export default function RootLayout(props: propsRootLayout) {
           </div>
         )}
       </div>
-      <div className="w-4/5 mx-auto my-10">{children}</div>
+      <div className="w-11/12 md:w-4/5 mx-auto my-10">{children}</div>
       <Footer />
     </div>
   );

@@ -12,7 +12,7 @@ export default function CardPS2Emulator(props: propsPS2EmuOverview) {
   const { emulatorImg, emulatorAlt, nameEmulator, descEmulator, children } =
     props;
   return (
-    <div className="w-xs h-full flex flex-col">
+    <div className="w-sm md:w-xs h-full flex flex-col">
       <img
         src={emulatorImg}
         alt={emulatorAlt}

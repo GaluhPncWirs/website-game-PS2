@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 
 export default function ListNavigation() {
@@ -15,6 +17,10 @@ export default function ListNavigation() {
       <Link to="/Contact" className="cursor-pointer">
         Contact
       </Link>
+      <div className="gap-x-3 flex w-72">
+        <Input type="text" placeholder="Search Game" />
+        <Button>Search</Button>
+      </div>
     </>
   );
 }
