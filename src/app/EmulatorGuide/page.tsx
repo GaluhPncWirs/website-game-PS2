@@ -26,7 +26,7 @@ export default function EmulatorGuide() {
             Below are the top recommended emulators to play PS2 game. Each
             emulator has it`s own features and strengths, download here.
           </p>
-          <div className="grid grid-cols-3 place-items-center gap-3 mt-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-5 gap-5">
             <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
               emulatorAlt="PCSX2"
@@ -149,10 +149,10 @@ export default function EmulatorGuide() {
         </div>
         <div className="mt-7">
           <h1 className="text-2xl tracking-wider font-semibold">Guides</h1>
-          <div className="grid grid-cols-4 place-items-center gap-3 mt-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-3 mt-5">
             <GuidesEmulator>
               <div className="flex items-center gap-x-5">
-                <Monitor className="size-10" />
+                <Monitor className="size-9" />
                 <h2 className="text-lg font-semibold tracking-wide">
                   Setup the Emulator
                 </h2>
@@ -174,18 +174,18 @@ export default function EmulatorGuide() {
             </GuidesEmulator>
             <GuidesEmulator>
               <div className="flex items-center gap-x-5">
-                <Gamepad2 className="size-10" />
+                <Gamepad2 className="size-9" />
                 <h2 className="text-lg font-semibold tracking-wide">
-                  Controller configuration
+                  Controller config
                 </h2>
               </div>
               <p>Learn how to emulate PS2 game on your PC.</p>
             </GuidesEmulator>
             <GuidesEmulator>
               <div className="flex items-center gap-x-5">
-                <Wrench className="size-10" />
+                <Wrench className="size-9" />
                 <h2 className="text-lg font-semibold tracking-wide">
-                  Troubleshooting tips
+                  Troubleshoot tips
                 </h2>
               </div>
               <p>Learn how to emulate PS2 game on your PC</p>

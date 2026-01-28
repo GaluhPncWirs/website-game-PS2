@@ -16,9 +16,9 @@ export default function AllGames() {
       titlePage="All PS2 Games"
       descPage="Browse and download PlayStation 2 game for your emulator"
     >
-      <AllGamePS2 itemPerPage={6}>
-        <div className="flex gap-x-5 my-7">
-          <div className="basis-1/5">
+      <AllGamePS2 itemPerPage={isMediaQuery ? 3 : 9}>
+        <div className="lg:flex gap-5 my-7">
+          <div className="lg:w-1/5 mb-5">
             <GenreGames />
             <div className="mt-5 border border-slate-400 bg-slate-100">
               <h2 className="text-xl font-medium border-b border-b-slate-400 px-5 py-2 bg-slate-300">
@@ -40,7 +40,7 @@ export default function AllGames() {
             {chunkedGames.map((row, i) => (
               <div
                 key={i}
-                className="grid grid-cols-3 place-items-center gap-x-5"
+                className="grid grid-cols-2 sm:grid-cols-3 place-items-center gap-5"
               >
                 {row.map((item, j) => (
                   <CoverGameWithDesc

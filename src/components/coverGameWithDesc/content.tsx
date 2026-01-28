@@ -12,7 +12,7 @@ export type propsCoverGameWithDesc = {
 export default function CoverGameWithDesc(props: propsCoverGameWithDesc) {
   const { srcImg, altImg, gameName, rating, genre } = props;
   return (
-    <div className="min-w-60 h-full flex flex-col">
+    <div className="min-w-40 md:min-w-60 h-full flex flex-col">
       <img src={srcImg} alt={altImg} className="w-full object-cover" />
       <div className="border border-slate-400 p-3 flex flex-col flex-1">
         <h1 className="text-xl tracking-wide font-semibold leading-snug line-clamp-1">

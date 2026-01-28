@@ -15,7 +15,10 @@ export default function Contact() {
       descPage="have questions or feedback? we`re here to help, fill out the form below or use one of our contact methods"
     >
       <h1 className="text-3xl font-semibold tracking-wide mb-5">Reach out</h1>
-      <div className="flex items-center justify-around bg-slate-50 rounded-md border-2 border-slate-700">
+      <div
+        className="flex items-center justify-around bg-slate-50 rounded-md border-2 border-slate-700 py-5 lg:py-0
+      "
+      >
         <form
           className="w-1/2 flex flex-col gap-y-3 justify-center"
           onSubmit={(e) => handleSubmitMessage(e)}
