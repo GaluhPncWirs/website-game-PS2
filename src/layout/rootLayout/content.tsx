@@ -39,7 +39,7 @@ export default function RootLayout(props: propsRootLayout) {
           </div>
         )}
       </div>
-      <div className="w-11/12 mx-auto my-10">{children}</div>
+      <div className="w-11/12 lg:w-10/12 mx-auto my-10">{children}</div>
       <Footer />
     </>
   );
