@@ -4,20 +4,24 @@ import { create } from "zustand";
 
 type stateHandlePagination = {
   dataGames: propsCoverGame[][];
-  setPaginationDataGame: (currentPage: number, itemPerPage: number) => void;
+  setPaginationDataGame: (
+    currentPage: number,
+    itemPerPage: number,
+    perSections: number,
+  ) => void;
 };
 
 export const useHandlePagination = create<stateHandlePagination>((set) => ({
   dataGames: [],
 
-  setPaginationDataGame: (currentPage, itemPerPage) => {
+  setPaginationDataGame: (currentPage, itemPerPage, perSections) => {
     const paginatedData = dataGamesPopular.slice(
       (currentPage - 1) * itemPerPage,
       currentPage * itemPerPage,
     );
     const chunkedDataGames = [];
-    for (let i = 0; i < dataGamesPopular.length; i += 3) {
-      chunkedDataGames.push(paginatedData.slice(i, i + 3));
+    for (let i = 0; i < paginatedData.length; i += perSections) {
+      chunkedDataGames.push(paginatedData.slice(i, i + perSections));
     }
     set({ dataGames: chunkedDataGames });
   },

@@ -1,41 +1,30 @@
-import React, { useEffect, useState } from "react";
-import SortGames from "../../components/sortGames/content";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { dataGamesPopular } from "@/data/dataGame/datas";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
+import type React from "react";
+import { useEffect, useState } from "react";
 
-type propsAllGamePS2 = {
-  itemPerPage: number;
-  children: React.ReactNode;
-};
-
-export default function AllGamePS2(props: propsAllGamePS2) {
-  const { itemPerPage, children } = props;
+export default function GamesPopular({ children }: React.PropsWithChildren) {
+  const totalPages = Math.ceil(dataGamesPopular.length / 4);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(dataGamesPopular.length / itemPerPage);
   const setPaginationDataGame = useHandlePagination(
     (state) => state.setPaginationDataGame,
   );
 
   useEffect(() => {
-    setPaginationDataGame(currentPage, itemPerPage, 3);
-  }, [currentPage, itemPerPage, setPaginationDataGame]);
+    setPaginationDataGame(currentPage, 4, 4);
+  }, [currentPage, setPaginationDataGame]);
 
   return (
-    <div className="mt-7">
-      <SortGames />
-
-      {children}
-
-      <Pagination>
-        <PaginationContent>
+    <div>
+      <Pagination className="mb-5 flex justify-end">
+        <PaginationContent className="gap-3">
           <PaginationItem>
             <PaginationPrevious
               onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
@@ -44,16 +33,6 @@ export default function AllGamePS2(props: propsAllGamePS2) {
               }
             />
           </PaginationItem>
-          {[...Array(totalPages)].map((_, i) => (
-            <PaginationItem key={i}>
-              <PaginationLink
-                isActive={currentPage === i + 1}
-                onClick={() => setCurrentPage(i + 1)}
-              >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
           <PaginationItem>
             <PaginationNext
               onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
@@ -66,6 +45,8 @@ export default function AllGamePS2(props: propsAllGamePS2) {
           </PaginationItem>
         </PaginationContent>
       </Pagination>
+
+      {children}
     </div>
   );
 }

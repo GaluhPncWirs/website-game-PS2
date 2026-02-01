@@ -1,6 +1,4 @@
-import CoverGames, {
-  type propsCoverGame,
-} from "@/components/coverGames/content";
+import CoverGames from "@/components/coverGames/content";
 import RootLayout from "../../layout/rootLayout/content";
 import {
   Download,
@@ -9,16 +7,17 @@ import {
   SearchCheck,
 } from "lucide-react";
 import BenefitDownloadGame from "@/layout/benefitDownload/content";
-import { dataGamesPopular } from "@/data/dataGame/datas";
 import AllGamePS2 from "@/layout/allGamePS2/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
 import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 import { useMediaQuery } from "@/hooks/mediaQuerry";
+import GamesPopular from "@/components/gamesPopular/content";
 
 export default function HomePage() {
   const chunkedGames = useHandlePagination((state) => state.dataGames);
+  const chunkedGames2 = useHandlePagination((state) => state.dataGames);
   const isMediaQuery = useMediaQuery();
 
   return (
@@ -26,21 +25,28 @@ export default function HomePage() {
       titlePage="Download Games PS2 Here !!!"
       descPage="Classic playStation 2 games, ready to play on your PC or handphone"
     >
-      <h1 className="font-semibold tracking-wide text-3xl mb-5">
-        Popular Games
-      </h1>
+      <h1 className="font-semibold tracking-wide text-3xl">Popular Games</h1>
 
-      <div className="flex gap-5 items-center overflow-x-auto pb-3">
-        {dataGamesPopular.map((item: propsCoverGame, i: number) => (
-          <CoverGames
-            key={i}
-            srcImg={item.srcImg}
-            altImg={item.altImg}
-            rating={item.rating}
-            genre={item.genre}
-          />
-        ))}
-      </div>
+      <GamesPopular>
+        <div className="w-fit">
+          {chunkedGames2.map((row, i) => (
+            <div
+              key={i}
+              className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-3"
+            >
+              {row.map((item, j) => (
+                <CoverGames
+                  key={j}
+                  srcImg={item.srcImg}
+                  altImg={item.altImg}
+                  rating={item.rating}
+                  genre={item.genre}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </GamesPopular>
 
       <AllGamePS2 itemPerPage={isMediaQuery ? 2 : 3}>
         <div className="flex flex-col md:flex-row gap-5 my-7">
