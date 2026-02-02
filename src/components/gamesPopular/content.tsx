@@ -19,7 +19,7 @@ export default function GamesPopular({ children }: React.PropsWithChildren) {
 
   useEffect(() => {
     setPaginationDataGame(currentPage, 4, 4);
-  }, [currentPage, setPaginationDataGame]);
+  }, [currentPage]);
 
   return (
     <div>

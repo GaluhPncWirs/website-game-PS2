@@ -26,7 +26,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
 
   useEffect(() => {
     setPaginationDataGame(currentPage, itemPerPage, 3);
-  }, [currentPage, itemPerPage, setPaginationDataGame]);
+  }, [currentPage, itemPerPage]);
 
   return (
     <div className="mt-7">
