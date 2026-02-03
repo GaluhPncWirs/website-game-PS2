@@ -8,22 +8,30 @@ import {
 import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export default function GamesPopular({ children }: React.PropsWithChildren) {
+type propsGamesPopular = {
+  itemPerPage: number;
+  children: React.ReactNode;
+};
+
+export default function GamesPopular(props: propsGamesPopular) {
+  const { itemPerPage, children } = props;
   const { gamesPS2, isLoading } = useGetDataGamePS2();
-  const filterGamePopuler = gamesPS2.filter(
-    (fil: any) => Number(fil.rating) > 9.0,
-  );
-  const totalPages = Math.ceil(filterGamePopuler.length / 4);
+  const filterGamePopuler = useMemo(() => {
+    return gamesPS2.filter((fil: any) => Number(fil.rating) > 9.0);
+  }, [gamesPS2]);
+  const totalPages = Math.ceil(filterGamePopuler.length / itemPerPage);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const setPaginationDataGame = useHandlePagination(
-    (state) => state.setPaginationDataGame,
+    (state) => state.setPaginationDataGamePopular,
   );
 
   useEffect(() => {
-    setPaginationDataGame(filterGamePopuler, currentPage, 4, 4);
-  }, [currentPage]);
+    if (isLoading || filterGamePopuler.length === 0) return;
+
+    setPaginationDataGame(filterGamePopuler, currentPage, itemPerPage);
+  }, [isLoading, filterGamePopuler, currentPage, itemPerPage]);
 
   return (
     <div>

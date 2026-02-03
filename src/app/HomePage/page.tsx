@@ -14,10 +14,18 @@ import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 import { useMediaQuery } from "@/hooks/mediaQuery";
 import GamesPopular from "@/components/gamesPopular/content";
+import { useMemo } from "react";
+import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 
 export default function HomePage() {
-  const chunkedAllGames = useHandlePagination((state) => state.dataGames);
-  const chunkedGamesPopular = useHandlePagination((state) => state.dataGames);
+  const { gamesPS2, isLoading } = useGetDataGamePS2();
+  const limitedData = useMemo(() => {
+    return gamesPS2.slice(0, 15);
+  }, [gamesPS2]);
+  const chunkedAllGames = useHandlePagination((state) => state.dataListGames);
+  const chunkedGamesPopular = useHandlePagination(
+    (state) => state.dataGamesPopular,
+  );
   const isMediaQuery = useMediaQuery();
 
   return (
@@ -27,7 +35,7 @@ export default function HomePage() {
     >
       <h1 className="font-semibold tracking-wide text-3xl">Popular Games</h1>
 
-      <GamesPopular>
+      <GamesPopular itemPerPage={isMediaQuery ? 2 : 4}>
         <div className="w-fit">
           {chunkedGamesPopular.map((row, i) => (
             <div
@@ -48,31 +56,39 @@ export default function HomePage() {
         </div>
       </GamesPopular>
 
-      <AllGamePS2 itemPerPage={isMediaQuery ? 2 : 3}>
-        <div className="flex flex-col md:flex-row gap-5 my-7">
-          <div className="md:w-72">
-            <GenreGames />
+      {isLoading ? (
+        <h1>loading...</h1>
+      ) : (
+        <AllGamePS2
+          limitedData={limitedData}
+          itemPerPage={isMediaQuery ? 2 : 3}
+          perSections={isMediaQuery ? 2 : 3}
+        >
+          <div className="flex flex-col md:flex-row gap-5 my-7">
+            <div className="md:w-72">
+              <GenreGames />
+            </div>
+            <div className="w-fit">
+              {chunkedAllGames.map((row, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-2 lg:grid-cols-3 place-items-center gap-5"
+                >
+                  {row.map((item, j) => (
+                    <CoverGames
+                      key={j}
+                      srcImg={item.url_image}
+                      altImg={item.cleanTitle}
+                      rating={item.rating}
+                      genre={item.genre}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="w-fit">
-            {chunkedAllGames.map((row, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-2 lg:grid-cols-3 place-items-center gap-5"
-              >
-                {row.map((item, j) => (
-                  <CoverGames
-                    key={j}
-                    srcImg={item.url_image}
-                    altImg={item.cleanTitle}
-                    rating={item.rating}
-                    genre={item.genre}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </AllGamePS2>
+        </AllGamePS2>
+      )}
 
       <div className="mt-10">
         <h1 className="text-3xl font-semibold tracking-wide">PS2 Emulators</h1>
