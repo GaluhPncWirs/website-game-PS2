@@ -3,7 +3,7 @@ import RootLayout from "@/layout/rootLayout/content";
 import CoverGameWithDesc from "@/components/coverGameWithDesc/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
-import { useMediaQuery } from "@/hooks/mediaQuerry";
+import { useMediaQuery } from "@/hooks/mediaQuery";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataGames);

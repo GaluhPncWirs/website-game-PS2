@@ -1,10 +1,10 @@
-import type { propsCoverGame } from "@/components/coverGames/content";
-import { dataGamesPopular } from "@/data/dataGame/datas";
+import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { create } from "zustand";
 
 type stateHandlePagination = {
-  dataGames: propsCoverGame[][];
+  dataGames: dataGamePS2[][];
   setPaginationDataGame: (
+    dataGamesPS2: dataGamePS2[],
     currentPage: number,
     itemPerPage: number,
     perSections: number,
@@ -14,8 +14,13 @@ type stateHandlePagination = {
 export const useHandlePagination = create<stateHandlePagination>((set) => ({
   dataGames: [],
 
-  setPaginationDataGame: (currentPage, itemPerPage, perSections) => {
-    const paginatedData = dataGamesPopular.slice(
+  setPaginationDataGame: (
+    dataGamesPS2,
+    currentPage,
+    itemPerPage,
+    perSections,
+  ) => {
+    const paginatedData = dataGamesPS2.slice(
       (currentPage - 1) * itemPerPage,
       currentPage * itemPerPage,
     );

@@ -1,6 +1,6 @@
 import { Heart } from "lucide-react";
 
-export type propsCoverGame = {
+type propsCoverGame = {
   srcImg: string;
   altImg: string;
   rating: string;

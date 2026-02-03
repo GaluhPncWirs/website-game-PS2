@@ -5,20 +5,24 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { dataGamesPopular } from "@/data/dataGame/datas";
+import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import type React from "react";
 import { useEffect, useState } from "react";
 
 export default function GamesPopular({ children }: React.PropsWithChildren) {
-  const totalPages = Math.ceil(dataGamesPopular.length / 4);
+  const { gamesPS2, isLoading } = useGetDataGamePS2();
+  const filterGamePopuler = gamesPS2.filter(
+    (fil: any) => Number(fil.rating) > 9.0,
+  );
+  const totalPages = Math.ceil(filterGamePopuler.length / 4);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const setPaginationDataGame = useHandlePagination(
     (state) => state.setPaginationDataGame,
   );
 
   useEffect(() => {
-    setPaginationDataGame(currentPage, 4, 4);
+    setPaginationDataGame(filterGamePopuler, currentPage, 4, 4);
   }, [currentPage]);
 
   return (
@@ -46,7 +50,7 @@ export default function GamesPopular({ children }: React.PropsWithChildren) {
         </PaginationContent>
       </Pagination>
 
-      {children}
+      {isLoading ? <h1>Loading...</h1> : children}
     </div>
   );
 }

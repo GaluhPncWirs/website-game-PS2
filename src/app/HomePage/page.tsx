@@ -12,12 +12,12 @@ import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
 import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
-import { useMediaQuery } from "@/hooks/mediaQuerry";
+import { useMediaQuery } from "@/hooks/mediaQuery";
 import GamesPopular from "@/components/gamesPopular/content";
 
 export default function HomePage() {
-  const chunkedGames = useHandlePagination((state) => state.dataGames);
-  const chunkedGames2 = useHandlePagination((state) => state.dataGames);
+  const chunkedAllGames = useHandlePagination((state) => state.dataGames);
+  const chunkedGamesPopular = useHandlePagination((state) => state.dataGames);
   const isMediaQuery = useMediaQuery();
 
   return (
@@ -29,7 +29,7 @@ export default function HomePage() {
 
       <GamesPopular>
         <div className="w-fit">
-          {chunkedGames2.map((row, i) => (
+          {chunkedGamesPopular.map((row, i) => (
             <div
               key={i}
               className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-3"
@@ -37,8 +37,8 @@ export default function HomePage() {
               {row.map((item, j) => (
                 <CoverGames
                   key={j}
-                  srcImg={item.srcImg}
-                  altImg={item.altImg}
+                  srcImg={item.url_image}
+                  altImg={item.cleanTitle}
                   rating={item.rating}
                   genre={item.genre}
                 />
@@ -54,7 +54,7 @@ export default function HomePage() {
             <GenreGames />
           </div>
           <div className="w-fit">
-            {chunkedGames.map((row, i) => (
+            {chunkedAllGames.map((row, i) => (
               <div
                 key={i}
                 className="grid grid-cols-2 lg:grid-cols-3 place-items-center gap-5"
@@ -62,8 +62,8 @@ export default function HomePage() {
                 {row.map((item, j) => (
                   <CoverGames
                     key={j}
-                    srcImg={item.srcImg}
-                    altImg={item.altImg}
+                    srcImg={item.url_image}
+                    altImg={item.cleanTitle}
                     rating={item.rating}
                     genre={item.genre}
                   />

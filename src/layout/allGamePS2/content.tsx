@@ -8,8 +8,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { dataGamesPopular } from "@/data/dataGame/datas";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
+import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 
 type propsAllGamePS2 = {
   itemPerPage: number;
@@ -18,21 +18,23 @@ type propsAllGamePS2 = {
 
 export default function AllGamePS2(props: propsAllGamePS2) {
   const { itemPerPage, children } = props;
+  const { gamesPS2, isLoading } = useGetDataGamePS2();
+  const limitedData = gamesPS2.slice(0, 15);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(dataGamesPopular.length / itemPerPage);
+  const totalPages = Math.ceil(limitedData.length / itemPerPage);
   const setPaginationDataGame = useHandlePagination(
     (state) => state.setPaginationDataGame,
   );
 
   useEffect(() => {
-    setPaginationDataGame(currentPage, itemPerPage, 3);
+    setPaginationDataGame(limitedData, currentPage, itemPerPage, 3);
   }, [currentPage, itemPerPage]);
 
   return (
     <div className="mt-7">
       <SortGames />
 
-      {children}
+      {isLoading ? <h1>loading...</h1> : children}
 
       <Pagination>
         <PaginationContent>
