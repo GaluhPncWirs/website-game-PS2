@@ -11,6 +11,7 @@ import AllGames from "../AllGames/page";
 import EmulatorGuide from "../EmulatorGuide/page";
 import SetupEmulator from "../EmulatorGuide/SetupEmulator/page";
 import Contact from "../Contact/page";
+import GameDetail from "../GameDetail/page";
 
 const rootApp = createRoot(document.getElementById("root")!);
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         element: <SetupEmulator />,
       },
     ],
+  },
+  {
+    path: "/GameDetail/:detailGame",
+    element: <GameDetail />,
   },
   {
     path: "/Contact",

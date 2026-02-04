@@ -4,15 +4,13 @@ import CoverGameWithDesc from "@/components/coverGameWithDesc/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import GenreGames from "@/components/genreGames/content";
 import { useMediaQuery } from "@/hooks/mediaQuery";
-import { useMemo } from "react";
 import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataListGames);
   const { gamesPS2, isLoading } = useGetDataGamePS2();
-  const limitedData = useMemo(() => {
-    return gamesPS2.slice(0, 100);
-  }, [gamesPS2]);
   const alphabeth = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i),
   );
@@ -26,14 +24,26 @@ export default function AllGames() {
         <h1>Loading...</h1>
       ) : (
         <AllGamePS2
-          limitedData={limitedData}
+          limitedData={gamesPS2}
           itemPerPage={isMediaQuery ? 4 : 9}
           perSections={isMediaQuery ? 4 : 9}
         >
           <div className="lg:flex gap-5 my-7">
-            <div className="lg:w-1/5 mb-5">
+            <div className="lg:w-1/5 mb-5 flex flex-col gap-5">
+              <div className="bg-slate-100">
+                <label
+                  htmlFor="searchGame"
+                  className="text-xl font-medium border w-full border-slate-400 px-5 py-2 bg-slate-300"
+                >
+                  Search game
+                </label>
+                <div className="relative flex items-center mt-2">
+                  <Search size={20} className="absolute left-2" />
+                  <Input type="text" className="pl-9 bg-slate-200" />
+                </div>
+              </div>
               <GenreGames />
-              <div className="mt-5 border border-slate-400 bg-slate-100">
+              <div className="border border-slate-400 bg-slate-100">
                 <h2 className="text-xl font-medium border-b border-b-slate-400 px-5 py-2 bg-slate-300">
                   Tags
                 </h2>
@@ -63,6 +73,7 @@ export default function AllGames() {
                       gameName={item.cleanTitle}
                       rating={item.rating}
                       genre={item.genre}
+                      idGame={item.id}
                     />
                   ))}
                 </div>

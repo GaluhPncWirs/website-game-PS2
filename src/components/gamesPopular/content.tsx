@@ -34,8 +34,8 @@ export default function GamesPopular(props: propsGamesPopular) {
   }, [isLoading, filterGamePopuler, currentPage, itemPerPage]);
 
   return (
-    <div>
-      <Pagination className="mb-5 flex justify-end">
+    <>
+      <Pagination className="mb-3 flex justify-end">
         <PaginationContent className="gap-3">
           <PaginationItem>
             <PaginationPrevious
@@ -59,6 +59,6 @@ export default function GamesPopular(props: propsGamesPopular) {
       </Pagination>
 
       {isLoading ? <h1>Loading...</h1> : children}
-    </div>
+    </>
   );
 }

@@ -49,6 +49,7 @@ export default function HomePage() {
                   altImg={item.cleanTitle}
                   rating={item.rating}
                   genre={item.genre}
+                  idGame={item.id}
                 />
               ))}
             </div>
@@ -81,6 +82,7 @@ export default function HomePage() {
                       altImg={item.cleanTitle}
                       rating={item.rating}
                       genre={item.genre}
+                      idGame={item.id}
                     />
                   ))}
                 </div>
