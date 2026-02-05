@@ -7,13 +7,24 @@ import { useMediaQuery } from "@/hooks/mediaQuery";
 import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 import SearchGames from "@/components/filterGame/searchGames/content";
 import TagsGames from "@/components/filterGame/tagsGames/content";
-import { useSearchGames } from "@/store/useSearchGames/state";
+import { useFilterGames } from "@/store/useSearchGames/state";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataListGames);
-  const selectedGame = useSearchGames((state) => state.selectedGame);
+  const filterBySearchGame = useFilterGames((state) => state.filterBySearch);
+  const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
   const { gamesPS2, isLoading } = useGetDataGamePS2();
   const isMediaQuery = useMediaQuery();
+
+  function handleResultFilterGame() {
+    if (filterBySearchGame.length > 0) {
+      return filterBySearchGame;
+    } else if (filterByGenreGame.length > 0) {
+      return filterByGenreGame;
+    } else {
+      return gamesPS2;
+    }
+  }
 
   return (
     <RootLayout
@@ -24,14 +35,14 @@ export default function AllGames() {
         <h1>Loading...</h1>
       ) : (
         <AllGamePS2
-          limitedData={selectedGame.length > 0 ? selectedGame : gamesPS2}
+          limitedData={handleResultFilterGame()}
           itemPerPage={isMediaQuery ? 4 : 9}
           perSections={isMediaQuery ? 4 : 9}
         >
           <div className="lg:flex gap-5 my-7">
             <div className="lg:w-1/5 mb-5 flex flex-col gap-5">
               <SearchGames gamesPS2={gamesPS2} />
-              <GenreGames />
+              <GenreGames gamesPS2={gamesPS2} />
               <TagsGames />
             </div>
             <div className="basis-4/5 flex flex-col gap-y-5">

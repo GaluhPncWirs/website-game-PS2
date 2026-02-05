@@ -6,7 +6,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useSearchGames } from "@/store/useSearchGames/state";
+import { useFilterGames } from "@/store/useSearchGames/state";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useEffect, useRef, useState } from "react";
 
@@ -15,8 +15,8 @@ export default function SearchGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
   const [resultSearchGame, setResultSearchGame] = useState<dataGamePS2[]>([]);
   const listGamesRef = useRef<HTMLDivElement>(null);
   const [isOpenSearchGame, setIsOpenSearchGame] = useState<boolean>(true);
-  const setSelectedGame = useSearchGames((state) => state.useHandleClickItem);
-  const selectedGame = useSearchGames((state) => state.selectedGame);
+  const setSelectedGame = useFilterGames((state) => state.useHandleSearchGame);
+  const selectedGame = useFilterGames((state) => state.filterBySearch);
 
   const normalizedSearch = searchGame.toLowerCase();
   useEffect(() => {
