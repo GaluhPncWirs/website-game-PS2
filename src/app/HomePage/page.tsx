@@ -9,7 +9,7 @@ import {
 import BenefitDownloadGame from "@/layout/benefitDownload/content";
 import AllGamePS2 from "@/layout/allGamePS2/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
-import GenreGames from "@/components/genreGames/content";
+import GenreGames from "@/components/filterGame/genreGames/content";
 import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 import { useMediaQuery } from "@/hooks/mediaQuery";

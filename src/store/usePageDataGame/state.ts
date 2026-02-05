@@ -16,11 +16,6 @@ type stateHandlePagination = {
     itemPerPage: number,
     perSections: number,
   ) => void;
-  // setPaginationDataAllGame: (
-  //   dataGamesPS2: dataGamePS2[],
-  //   currentPage: number,
-  //   itemPerPage: number,
-  // ) => void;
 };
 
 function paginatedData(
@@ -37,7 +32,6 @@ function paginatedData(
 export const useHandlePagination = create<stateHandlePagination>((set) => ({
   dataGamesPopular: [],
   dataListGames: [],
-  // dataAllGame: [],
 
   setPaginationDataGamePopular: (dataGamesPS2, currentPage, itemPerPage) => {
     const pageData = paginatedData(dataGamesPS2, currentPage, itemPerPage);
@@ -61,13 +55,4 @@ export const useHandlePagination = create<stateHandlePagination>((set) => ({
     }
     set({ dataListGames: chunkedDataGames });
   },
-
-  // setPaginationDataAllGame: (dataGamesPS2, currentPage, itemPerPage) => {
-  //   const pageData = paginatedData(dataGamesPS2, currentPage, itemPerPage);
-  //   const chunkedDataGames = [];
-  //   for (let i = 0; i < paginatedData.length; i += 9) {
-  //     chunkedDataGames.push(pageData.slice(i, i + 9));
-  //   }
-  //   set({ dataAllGame: chunkedDataGames });
-  // },
 }));
