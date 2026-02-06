@@ -7,10 +7,12 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useFilterGames } from "@/store/useFilterGames/state";
+import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useEffect, useRef, useState } from "react";
 
-export default function SearchGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
+export default function SearchGames() {
+  const dataGames = useGetDataPS2((state) => state.dataGames);
   const [searchGame, setSearchGame] = useState<string>("");
   const [resultSearchGame, setResultSearchGame] = useState<dataGamePS2[]>([]);
   const listGamesRef = useRef<HTMLDivElement>(null);
@@ -21,22 +23,23 @@ export default function SearchGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
   useEffect(() => {
     function handleSearchGame() {
       if (normalizedSearch !== "") {
-        const filterSearchGame = gamesPS2.filter((item: dataGamePS2) => {
-          return item.cleanTitle?.toLowerCase().startsWith(normalizedSearch);
-        });
+        const filterSearchGame = dataGames.filter((item: dataGamePS2) =>
+          item.cleanTitle?.toLowerCase().startsWith(normalizedSearch),
+        );
         setResultSearchGame(filterSearchGame);
       } else {
         setResultSearchGame([]);
       }
     }
     handleSearchGame();
-  }, [normalizedSearch, gamesPS2]);
+  }, [normalizedSearch, dataGames]);
 
-  function handleItemClick(gameItem: dataGamePS2) {
+  function handleItemSelected(gameItem: dataGamePS2) {
     setSelectedGame(gameItem);
     setSearchGame(gameItem.cleanTitle);
     setIsOpenSearchGame(false);
   }
+
   return (
     <Command>
       <CommandInput
@@ -53,7 +56,7 @@ export default function SearchGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
                   {resultSearchGame.map((itemGame: dataGamePS2) => (
                     <CommandItem
                       key={itemGame.id}
-                      onSelect={() => handleItemClick(itemGame)}
+                      onSelect={() => handleItemSelected(itemGame)}
                     >
                       {itemGame.cleanTitle}
                     </CommandItem>

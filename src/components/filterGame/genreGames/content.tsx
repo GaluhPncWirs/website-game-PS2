@@ -1,6 +1,7 @@
 import { Input } from "../../ui/input";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useFilterGames } from "@/store/useFilterGames/state";
+import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 
 const dataGenreGames = [
   "Action",
@@ -16,12 +17,12 @@ const dataGenreGames = [
   "Platformer",
 ];
 
-export default function GenreGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
+export default function GenreGames() {
   const filterByGenre = useFilterGames((state) => state.useHandleGenreGame);
-
+  const dataGames = useGetDataPS2((state) => state.dataGames);
   function handleGenreIsCheked(event: Event) {
     const targetValue = event.target as HTMLInputElement;
-    filterByGenre(gamesPS2, targetValue.value);
+    filterByGenre(dataGames, targetValue.value);
   }
 
   return (

@@ -4,7 +4,6 @@ import { create } from "zustand";
 type stateHandlePagination = {
   dataGamesPopular: dataGamePS2[][];
   dataListGames: dataGamePS2[][];
-  // dataAllGame: dataGamePS2[][];
   setPaginationDataGamePopular: (
     dataGamesPS2: dataGamePS2[],
     currentPage: number,
@@ -14,7 +13,6 @@ type stateHandlePagination = {
     dataGamesPS2: dataGamePS2[],
     currentPage: number,
     itemPerPage: number,
-    perSections: number,
   ) => void;
 };
 
@@ -42,16 +40,11 @@ export const useHandlePagination = create<stateHandlePagination>((set) => ({
     set({ dataGamesPopular: chunkedDataGames });
   },
 
-  setPaginationDataListGame: (
-    dataGamesPS2,
-    currentPage,
-    itemPerPage,
-    perSections,
-  ) => {
+  setPaginationDataListGame: (dataGamesPS2, currentPage, itemPerPage) => {
     const pageData = paginatedData(dataGamesPS2, currentPage, itemPerPage);
     const chunkedDataGames = [];
-    for (let i = 0; i < paginatedData.length; i += perSections) {
-      chunkedDataGames.push(pageData.slice(i, i + perSections));
+    for (let i = 0; i < paginatedData.length; i += 9) {
+      chunkedDataGames.push(pageData.slice(i, i + 9));
     }
     set({ dataListGames: chunkedDataGames });
   },

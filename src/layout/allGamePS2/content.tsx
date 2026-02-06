@@ -10,28 +10,48 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
-import type { dataGamePS2 } from "@/types/dataGamePS2";
+import { useFilterGames } from "@/store/useFilterGames/state";
+import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
+import { useShallow } from "zustand/shallow";
 
 type propsAllGamePS2 = {
-  limitedData: dataGamePS2[];
   itemPerPage: number;
-  perSections: number;
   children: React.ReactNode;
 };
 
 export default function AllGamePS2(props: propsAllGamePS2) {
-  const { limitedData, itemPerPage, perSections, children } = props;
+  const { itemPerPage, children } = props;
+  const { dataGames, isLoading } = useGetDataPS2(
+    useShallow((state) => ({
+      dataGames: state.dataGames,
+      isLoading: state.isLoading,
+    })),
+  );
+  const filterBySearchGame = useFilterGames((state) => state.filterBySearch);
+  const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
+  const filterByTagGame = useFilterGames((state) => state.filterByTag);
+  function handleResultFilterGame() {
+    if (filterBySearchGame.length > 0) {
+      return filterBySearchGame;
+    } else if (filterByGenreGame.length > 0) {
+      return filterByGenreGame;
+    } else if (filterByTagGame.length > 0) {
+      return filterByTagGame;
+    } else {
+      return dataGames;
+    }
+  }
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(limitedData.length / itemPerPage);
+  const totalPages = Math.ceil(handleResultFilterGame().length / itemPerPage);
   const setPaginationDataGame = useHandlePagination(
     (state) => state.setPaginationDataListGame,
   );
 
   useEffect(() => {
-    if (limitedData.length === 0) return;
+    if (handleResultFilterGame().length === 0) return;
 
-    setPaginationDataGame(limitedData, currentPage, itemPerPage, perSections);
-  }, [limitedData, currentPage, itemPerPage]);
+    setPaginationDataGame(handleResultFilterGame(), currentPage, itemPerPage);
+  }, [handleResultFilterGame(), currentPage, itemPerPage]);
 
   function getPaginationRange(current: number, total: number, delta = 1) {
     const range: number[] = [];
@@ -63,7 +83,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
     <div className="mt-7">
       <SortGames />
 
-      {children}
+      {isLoading ? <h1>loading...</h1> : children}
 
       <Pagination>
         <PaginationContent>

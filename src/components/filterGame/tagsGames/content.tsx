@@ -1,19 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { useFilterGames } from "@/store/useFilterGames/state";
-import type { dataGamePS2 } from "@/types/dataGamePS2";
+import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import { useEffect, useState } from "react";
 
-export default function TagsGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
+export default function TagsGames() {
   const alphabeth = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i),
   );
+  const dataGames = useGetDataPS2((state) => state.dataGames);
   const handleByTagGame = useFilterGames((state) => state.useHandleTagGame);
   const [activeAlphabet, setActiveAlphabet] = useState<string | null>(null);
 
   useEffect(() => {
     if (!activeAlphabet) return;
-    handleByTagGame(gamesPS2, activeAlphabet);
-  }, [gamesPS2, activeAlphabet]);
+    handleByTagGame(dataGames, activeAlphabet);
+  }, [dataGames, activeAlphabet]);
 
   return (
     <div className="border border-slate-400 bg-slate-100">

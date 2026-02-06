@@ -7,27 +7,16 @@ import {
   SearchCheck,
 } from "lucide-react";
 import BenefitDownloadGame from "@/layout/benefitDownload/content";
-import AllGamePS2 from "@/layout/allGamePS2/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
-import GenreGames from "@/components/filterGame/genreGames/content";
 import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 import { useMediaQuery } from "@/hooks/mediaQuery";
 import GamesPopular from "@/components/gamesPopular/content";
-import { useMemo } from "react";
-import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
-// import { useFilterGames } from "@/store/useSearchGames/state";
 
 export default function HomePage() {
-  const { gamesPS2, isLoading } = useGetDataGamePS2();
-  const limitedData = useMemo(() => {
-    return gamesPS2.slice(0, 15);
-  }, [gamesPS2]);
-  const chunkedAllGames = useHandlePagination((state) => state.dataListGames);
   const chunkedGamesPopular = useHandlePagination(
     (state) => state.dataGamesPopular,
   );
-  // const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
   const isMediaQuery = useMediaQuery();
 
   return (
@@ -58,41 +47,6 @@ export default function HomePage() {
           ))}
         </div>
       </GamesPopular>
-
-      {isLoading ? (
-        <h1>loading...</h1>
-      ) : (
-        <AllGamePS2
-          limitedData={limitedData}
-          itemPerPage={isMediaQuery ? 2 : 3}
-          perSections={isMediaQuery ? 2 : 3}
-        >
-          <div className="flex flex-col md:flex-row gap-5 my-7">
-            <div className="md:w-72">
-              <GenreGames gamesPS2={gamesPS2} />
-            </div>
-            <div className="w-fit">
-              {chunkedAllGames.map((row, i) => (
-                <div
-                  key={i}
-                  className="grid grid-cols-2 lg:grid-cols-3 place-items-center gap-5"
-                >
-                  {row.map((item, j) => (
-                    <CoverGames
-                      key={j}
-                      srcImg={item.url_image}
-                      altImg={item.cleanTitle}
-                      rating={item.rating}
-                      genre={item.genre}
-                      idGame={item.id}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </AllGamePS2>
-      )}
 
       <div className="mt-10">
         <h1 className="text-3xl font-semibold tracking-wide">PS2 Emulators</h1>
