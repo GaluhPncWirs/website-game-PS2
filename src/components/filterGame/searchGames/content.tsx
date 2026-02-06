@@ -6,7 +6,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useFilterGames } from "@/store/useSearchGames/state";
+import { useFilterGames } from "@/store/useFilterGames/state";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,7 +16,6 @@ export default function SearchGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
   const listGamesRef = useRef<HTMLDivElement>(null);
   const [isOpenSearchGame, setIsOpenSearchGame] = useState<boolean>(true);
   const setSelectedGame = useFilterGames((state) => state.useHandleSearchGame);
-  const selectedGame = useFilterGames((state) => state.filterBySearch);
 
   const normalizedSearch = searchGame.toLowerCase();
   useEffect(() => {
@@ -38,12 +37,6 @@ export default function SearchGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
     setSearchGame(gameItem.cleanTitle);
     setIsOpenSearchGame(false);
   }
-
-  useEffect(() => {
-    if (selectedGame.length > 0) {
-      setIsOpenSearchGame(true);
-    }
-  }, [selectedGame]);
   return (
     <Command>
       <CommandInput

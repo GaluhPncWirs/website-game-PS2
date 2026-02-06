@@ -7,12 +7,13 @@ import { useMediaQuery } from "@/hooks/mediaQuery";
 import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 import SearchGames from "@/components/filterGame/searchGames/content";
 import TagsGames from "@/components/filterGame/tagsGames/content";
-import { useFilterGames } from "@/store/useSearchGames/state";
+import { useFilterGames } from "@/store/useFilterGames/state";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataListGames);
   const filterBySearchGame = useFilterGames((state) => state.filterBySearch);
   const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
+  const filterByTagGame = useFilterGames((state) => state.filterByTag);
   const { gamesPS2, isLoading } = useGetDataGamePS2();
   const isMediaQuery = useMediaQuery();
 
@@ -21,6 +22,8 @@ export default function AllGames() {
       return filterBySearchGame;
     } else if (filterByGenreGame.length > 0) {
       return filterByGenreGame;
+    } else if (filterByTagGame.length > 0) {
+      return filterByTagGame;
     } else {
       return gamesPS2;
     }
@@ -43,7 +46,7 @@ export default function AllGames() {
             <div className="lg:w-1/5 mb-5 flex flex-col gap-5">
               <SearchGames gamesPS2={gamesPS2} />
               <GenreGames gamesPS2={gamesPS2} />
-              <TagsGames />
+              <TagsGames gamesPS2={gamesPS2} />
             </div>
             <div className="basis-4/5 flex flex-col gap-y-5">
               {chunkedGames.map((row, i) => (

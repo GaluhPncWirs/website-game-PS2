@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
-import { useFilterGames } from "@/store/useSearchGames/state";
+import { useFilterGames } from "@/store/useFilterGames/state";
 
 const dataGenreGames = [
   "Action",
@@ -15,14 +13,16 @@ const dataGenreGames = [
   "Music",
   "Puzzle",
   "Strategy",
+  "Platformer",
 ];
 
 export default function GenreGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
-  const [genreIsCheked, setGenreIsCheked] = useState<string>("");
   const filterByGenre = useFilterGames((state) => state.useHandleGenreGame);
-  useEffect(() => {
-    filterByGenre(gamesPS2, genreIsCheked);
-  }, [gamesPS2, genreIsCheked]);
+
+  function handleGenreIsCheked(event: Event) {
+    const targetValue = event.target as HTMLInputElement;
+    filterByGenre(gamesPS2, targetValue.value);
+  }
 
   return (
     <div>
@@ -30,7 +30,7 @@ export default function GenreGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
         Genre Games
       </h2>
       <div className="border border-slate-400 px-5 py-3 bg-slate-100">
-        <ul className="flex flex-wrap gap-3 items-center mb-4">
+        <ul className="flex flex-wrap gap-3 items-center">
           {dataGenreGames.map((item: string, i: number) => (
             <li className="flex items-center gap-x-2" key={i}>
               <Input
@@ -39,15 +39,12 @@ export default function GenreGames({ gamesPS2 }: { gamesPS2: dataGamePS2[] }) {
                 id={item}
                 name="genre"
                 value={item}
-                onClick={(event) =>
-                  setGenreIsCheked((event.target as HTMLInputElement).value)
-                }
+                onClick={(e: any) => handleGenreIsCheked(e)}
               />
               <label htmlFor={item}>{item}</label>
             </li>
           ))}
         </ul>
-        <Button className="w-full">Apply Filter</Button>
       </div>
     </div>
   );

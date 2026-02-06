@@ -16,6 +16,7 @@ import { useMediaQuery } from "@/hooks/mediaQuery";
 import GamesPopular from "@/components/gamesPopular/content";
 import { useMemo } from "react";
 import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
+// import { useFilterGames } from "@/store/useSearchGames/state";
 
 export default function HomePage() {
   const { gamesPS2, isLoading } = useGetDataGamePS2();
@@ -26,6 +27,7 @@ export default function HomePage() {
   const chunkedGamesPopular = useHandlePagination(
     (state) => state.dataGamesPopular,
   );
+  // const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
   const isMediaQuery = useMediaQuery();
 
   return (
@@ -67,7 +69,7 @@ export default function HomePage() {
         >
           <div className="flex flex-col md:flex-row gap-5 my-7">
             <div className="md:w-72">
-              <GenreGames />
+              <GenreGames gamesPS2={gamesPS2} />
             </div>
             <div className="w-fit">
               {chunkedAllGames.map((row, i) => (

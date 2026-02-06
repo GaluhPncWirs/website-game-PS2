@@ -53,9 +53,12 @@ export default function GameDetail() {
                     {detailGamePS2.date.replace(/\s*\d{2}:\d{2}/, "")}
                   </h2>{" "}
                 </div>
-                <p className="text-justify mt-3">
-                  {detailGamePS2.thegamesdbDescription}
-                </p>
+                <div className="mt-3">
+                  <h2 className="text-lg font-medium">Game Description</h2>
+                  <p className="text-justify mt-2">
+                    {detailGamePS2.thegamesdbDescription}
+                  </p>
+                </div>
                 <a
                   href={detailGamePS2.url}
                   rel="noopener noreferrer"

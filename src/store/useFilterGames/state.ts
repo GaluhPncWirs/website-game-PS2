@@ -7,7 +7,7 @@ type filterGames = {
   filterByTag: dataGamePS2[];
   useHandleSearchGame: (gameList: dataGamePS2) => void;
   useHandleGenreGame: (gameList: dataGamePS2[], genreIsCheked: string) => void;
-  useHandleTagGame: (gameList: dataGamePS2) => void;
+  useHandleTagGame: (gameList: dataGamePS2[], valueTag: string) => void;
 };
 
 export const useFilterGames = create<filterGames>((set) => ({
@@ -26,7 +26,10 @@ export const useFilterGames = create<filterGames>((set) => ({
     set({ filterByGenre: filterByGenre });
   },
 
-  useHandleTagGame: (gameList) => {
-    set({ filterByTag: [gameList] });
+  useHandleTagGame: (gameList, valueTag) => {
+    const filterByTags = gameList.filter((item) =>
+      item.cleanTitle.startsWith(valueTag),
+    );
+    set({ filterByTag: filterByTags });
   },
 }));
