@@ -200,26 +200,22 @@ export default function EmulatorGuide() {
                 Where can I download PS2 Bios ?
               </AccordionTrigger>
               <AccordionContent>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatum, aliquid molestiae. Nihil quidem temporibus,
-                repudiandae est obcaecati voluptatem cupiditate.
+                Due to copyright restrictions, PS2 BIOS files cannot be legally
+                downloaded from third-party websites. The only legal way to
+                obtain a PS2 BIOS is by dumping it directly from your own
+                PlayStation 2 console using appropriate tools. This ensures
+                compliance with copyright laws and avoids legal issues.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="tips using PS2">
               <AccordionTrigger>Tips for using PS2 Emulator</AccordionTrigger>
               <AccordionContent>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatum, aliquid molestiae. Nihil quidem
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="ASD">
-              <AccordionTrigger>
-                How to install PS2 game on PCSX2
-              </AccordionTrigger>
-              <AccordionContent>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatum, aliquid molestiae. Nihil quidem temporibus,
-                repudiandae est obcaecati voluptatem cupiditate.
+                Make sure you use a legal PS2 BIOS dumped from your own console.
+                Always use the latest emulator version for better compatibility
+                and performance. Adjust graphics settings according to your
+                device specifications, enable speed hacks carefully, and
+                regularly save your progress using both in-game saves and save
+                states.
               </AccordionContent>
             </AccordionItem>
           </Accordion>

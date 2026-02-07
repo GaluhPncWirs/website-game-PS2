@@ -7,25 +7,27 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useFilterGames } from "@/store/useFilterGames/state";
+import { useFiltersActive } from "@/store/useFiltersActive/state";
 import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useEffect, useRef, useState } from "react";
+import { useShallow } from "zustand/shallow";
 
-export default function SearchGames({ activeFilters, setActiveFilters }: any) {
+export default function SearchGames() {
   const dataGames = useGetDataPS2((state) => state.dataGames);
   const [searchGame, setSearchGame] = useState<string>("");
   const [resultSearchGame, setResultSearchGame] = useState<dataGamePS2[]>([]);
   const listGamesRef = useRef<HTMLDivElement>(null);
   const [isOpenSearchGame, setIsOpenSearchGame] = useState<boolean>(true);
   const setSelectedGame = useFilterGames((state) => state.useHandleSearchGame);
-  // const { activeFilters, setActiveSearchGame } = useFiltersActive(
-  //   useShallow((state) => ({
-  //     activeFilters: state.activeFilters,
-  //     setActiveSearchGame: state.setActiveSearchGame,
-  //   })),
-  // );
+  const { disabledFilter, setDisabledFilter } = useFiltersActive(
+    useShallow((state) => ({
+      disabledFilter: state.disabledFilter,
+      setDisabledFilter: state.setDisabledFilter,
+    })),
+  );
 
-  const isDisabled = activeFilters !== null && activeFilters !== "search";
+  const isDisabled = disabledFilter !== null && disabledFilter !== "search";
 
   const normalizedSearch = searchGame.toLowerCase();
   useEffect(() => {
@@ -48,6 +50,12 @@ export default function SearchGames({ activeFilters, setActiveFilters }: any) {
     setIsOpenSearchGame(false);
   }
 
+  useEffect(() => {
+    if (searchGame === "" && !isOpenSearchGame) {
+      setIsOpenSearchGame(true);
+    }
+  }, [searchGame, isOpenSearchGame]);
+
   return (
     <Command>
       <CommandInput
@@ -55,8 +63,8 @@ export default function SearchGames({ activeFilters, setActiveFilters }: any) {
         value={searchGame}
         placeholder="Search Games..."
         disabled={isDisabled}
-        onFocus={() => setActiveFilters("search")}
-        className={`w-full ${activeFilters ? "opacity-50" : ""}`}
+        onFocus={() => setDisabledFilter("search")}
+        className={`w-full ${isDisabled ? "opacity-50" : ""}`}
       />
       {isOpenSearchGame && (
         <>

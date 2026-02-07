@@ -7,20 +7,15 @@ import { useMediaQuery } from "@/hooks/mediaQuery";
 import SearchGames from "@/components/filterGame/searchGames/content";
 import TagsGames from "@/components/filterGame/tagsGames/content";
 import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-
-type activeFilters = "search" | "genre" | "tags" | null;
-export type Props = {
-  activeFilter: activeFilters;
-  setActiveFilter: React.Dispatch<React.SetStateAction<activeFilters>>;
-};
+import { useFiltersActive } from "@/store/useFiltersActive/state";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataListGames);
-  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
+  const resetFilter = useFiltersActive((state) => state.setDisabledFilter);
   const isMediaQuery = useMediaQuery();
-  const [activeFilters, setActiveFilters] = useState<activeFilters>(null);
+  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
 
   useEffect(() => {
     let isMounted = true;
@@ -38,19 +33,10 @@ export default function AllGames() {
       <AllGamePS2 itemPerPage={isMediaQuery ? 4 : 9}>
         <div className="lg:flex gap-5 my-7">
           <div className="lg:w-1/5 mb-5 flex flex-col gap-5">
-            <SearchGames
-              activeFilters={activeFilters}
-              setActiveFilters={setActiveFilters}
-            />
-            <GenreGames
-              activeFilters={activeFilters}
-              setActiveFilters={setActiveFilters}
-            />
-            <TagsGames
-              activeFilters={activeFilters}
-              setActiveFilters={setActiveFilters}
-            />
-            <Button onClick={() => setActiveFilters(null)}>Reset Filter</Button>
+            <SearchGames />
+            <GenreGames />
+            <TagsGames />
+            <Button onClick={() => resetFilter(null)}>Reset Filter</Button>
           </div>
           <div className="basis-4/5 flex flex-col gap-y-5">
             {chunkedGames.map((row, i) => (

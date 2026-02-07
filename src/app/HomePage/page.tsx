@@ -12,12 +12,23 @@ import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 import { useMediaQuery } from "@/hooks/mediaQuery";
 import GamesPopular from "@/components/gamesPopular/content";
+import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
+import { useEffect } from "react";
 
 export default function HomePage() {
   const chunkedGamesPopular = useHandlePagination(
     (state) => state.dataGamesPopular,
   );
   const isMediaQuery = useMediaQuery();
+  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
+
+  useEffect(() => {
+    let isMounted = true;
+    handleGetData(isMounted);
+    return () => {
+      isMounted = false;
+    };
+  }, [handleGetData]);
 
   return (
     <RootLayout

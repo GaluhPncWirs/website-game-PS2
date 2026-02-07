@@ -59,9 +59,15 @@ export default function AllGamePS2(props: propsAllGamePS2) {
   );
 
   useEffect(() => {
-    if (handleResultFilterGame().length === 0) return;
+    if (isLoading || handleResultFilterGame().length === 0) return;
     setPaginationDataGame(handleResultFilterGame(), currentPage, itemPerPage);
-  }, [setPaginationDataGame, handleResultFilterGame, currentPage, itemPerPage]);
+  }, [
+    setPaginationDataGame,
+    isLoading,
+    handleResultFilterGame,
+    currentPage,
+    itemPerPage,
+  ]);
 
   function getPaginationRange(current: number, total: number, delta = 1) {
     const range: number[] = [];

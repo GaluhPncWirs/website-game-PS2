@@ -27,7 +27,7 @@ export default function GameDetail() {
             <img
               src={detailGamePS2.url_image}
               alt={detailGamePS2.cleanTitle}
-              className="w-1/3 object-cover"
+              className="w-1/3 object-contain"
             />
             <div className="w-2/3">
               <h1 className="text-2xl font-semibold tracking-wide">

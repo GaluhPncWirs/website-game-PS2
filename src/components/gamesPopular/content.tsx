@@ -5,10 +5,12 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
+import { useFilterGames } from "@/store/useFilterGames/state";
+import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import type React from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { useShallow } from "zustand/shallow";
 
 type propsGamesPopular = {
   itemPerPage: number;
@@ -17,21 +19,39 @@ type propsGamesPopular = {
 
 export default function GamesPopular(props: propsGamesPopular) {
   const { itemPerPage, children } = props;
-  const { gamesPS2, isLoading } = useGetDataGamePS2();
-  const filterGamePopuler = useMemo(() => {
-    return gamesPS2.filter((fil: any) => Number(fil.rating) > 9.0);
-  }, [gamesPS2]);
-  const totalPages = Math.ceil(filterGamePopuler.length / itemPerPage);
+  const { dataGames, isLoading } = useGetDataPS2(
+    useShallow((props) => ({
+      dataGames: props.dataGames,
+      isLoading: props.isLoading,
+    })),
+  );
+  const { handleSortByTopRated, sortByTopRated } = useFilterGames(
+    useShallow((state) => ({
+      handleSortByTopRated: state.useHandleSortByGame,
+      sortByTopRated: state.sortBy,
+    })),
+  );
+  const totalPages = Math.ceil(sortByTopRated.length / itemPerPage);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const setPaginationDataGame = useHandlePagination(
     (state) => state.setPaginationDataGamePopular,
   );
 
   useEffect(() => {
-    if (isLoading || filterGamePopuler.length === 0) return;
+    handleSortByTopRated(dataGames, "topRated");
+  }, [handleSortByTopRated, dataGames]);
 
-    setPaginationDataGame(filterGamePopuler, currentPage, itemPerPage);
-  }, [isLoading, filterGamePopuler, currentPage, itemPerPage]);
+  useEffect(() => {
+    if (isLoading || sortByTopRated.length === 0) return;
+
+    setPaginationDataGame(sortByTopRated, currentPage, itemPerPage);
+  }, [
+    setPaginationDataGame,
+    isLoading,
+    sortByTopRated,
+    currentPage,
+    itemPerPage,
+  ]);
 
   return (
     <>
@@ -58,7 +78,7 @@ export default function GamesPopular(props: propsGamesPopular) {
         </PaginationContent>
       </Pagination>
 
-      {isLoading ? <h1>Loading...</h1> : children}
+      {isLoading ? <h1>loading...</h1> : children}
     </>
   );
 }
