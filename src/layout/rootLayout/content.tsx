@@ -16,10 +16,10 @@ export default function RootLayout(props: propsRootLayout) {
     <>
       <NavigationBar />
       <div className="heroSection h-100 flex flex-col justify-center px-6 gap-y-4 md:px-10 lg:px-16">
-        <h1 className="font-bold tracking-wider text-shadow-sm text-shadow-blue-100 text-3xl max-w-sm md:text-4xl md:max-w-md lg:max-w-2xl">
+        <h1 className="font-bold tracking-wider text-shadow-sm text-slate-800 text-shadow-slate-300 text-3xl max-w-sm md:text-4xl md:max-w-md lg:max-w-2xl">
           {titlePage}
         </h1>
-        <h3 className="font-semibold text-xl tracking-wide text-shadow-sm text-shadow-blue-100 md:max-w-xl">
+        <h3 className="font-semibold text-xl tracking-wide text-shadow-sm text-slate-800 text-shadow-slate-300 md:max-w-xl">
           {descPage}
         </h3>
         {pathname === "/HomePage" && (

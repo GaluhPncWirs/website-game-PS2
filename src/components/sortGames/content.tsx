@@ -6,24 +6,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useFilterGames } from "@/store/useFilterGames/state";
 import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SortGames() {
-  const dataGames = useGetDataPS2((state) => state.dataGames);
   const [sortByValue, setSortByValue] = useState<string | null>(null);
+  const handleSortByGame = useFilterGames((state) => state.useHandleSortByGame);
+  const dataGames = useGetDataPS2((props) => props.dataGames);
 
-  if (sortByValue === "topRated") {
-    const filterByTopRated = dataGames.filter(
-      (topRatedGame) => Number(topRatedGame.rating) > 9.0,
-    );
-    console.log(filterByTopRated);
-  } else if (sortByValue === "newest") {
-    const filterByNewest = [...dataGames]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 50);
-    console.log(filterByNewest);
-  }
+  useEffect(() => {
+    if (!sortByValue) return;
+    handleSortByGame(dataGames, sortByValue);
+  }, [handleSortByGame, dataGames, sortByValue]);
 
   return (
     <div className="flex justify-between items-center mb-3">
@@ -34,7 +29,7 @@ export default function SortGames() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="mostDownloaded">Most Downloaded</SelectItem>
+            {/* <SelectItem value="mostDownloaded">Most Downloaded</SelectItem> */}
             <SelectItem value="newest">Newest</SelectItem>
             <SelectItem value="topRated">Top Rated</SelectItem>
           </SelectGroup>

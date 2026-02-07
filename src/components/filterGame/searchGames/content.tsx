@@ -11,13 +11,21 @@ import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useEffect, useRef, useState } from "react";
 
-export default function SearchGames() {
+export default function SearchGames({ activeFilters, setActiveFilters }: any) {
   const dataGames = useGetDataPS2((state) => state.dataGames);
   const [searchGame, setSearchGame] = useState<string>("");
   const [resultSearchGame, setResultSearchGame] = useState<dataGamePS2[]>([]);
   const listGamesRef = useRef<HTMLDivElement>(null);
   const [isOpenSearchGame, setIsOpenSearchGame] = useState<boolean>(true);
   const setSelectedGame = useFilterGames((state) => state.useHandleSearchGame);
+  // const { activeFilters, setActiveSearchGame } = useFiltersActive(
+  //   useShallow((state) => ({
+  //     activeFilters: state.activeFilters,
+  //     setActiveSearchGame: state.setActiveSearchGame,
+  //   })),
+  // );
+
+  const isDisabled = activeFilters !== null && activeFilters !== "search";
 
   const normalizedSearch = searchGame.toLowerCase();
   useEffect(() => {
@@ -46,6 +54,9 @@ export default function SearchGames() {
         onValueChange={setSearchGame}
         value={searchGame}
         placeholder="Search Games..."
+        disabled={isDisabled}
+        onFocus={() => setActiveFilters("search")}
+        className={`w-full ${activeFilters ? "opacity-50" : ""}`}
       />
       {isOpenSearchGame && (
         <>

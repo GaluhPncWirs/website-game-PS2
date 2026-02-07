@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SortGames from "../../components/sortGames/content";
 import {
   Pagination,
@@ -30,17 +30,28 @@ export default function AllGamePS2(props: propsAllGamePS2) {
   const filterBySearchGame = useFilterGames((state) => state.filterBySearch);
   const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
   const filterByTagGame = useFilterGames((state) => state.filterByTag);
-  function handleResultFilterGame() {
+  const sortByGame = useFilterGames((state) => state.sortBy);
+
+  const handleResultFilterGame = useCallback(() => {
     if (filterBySearchGame.length > 0) {
       return filterBySearchGame;
     } else if (filterByGenreGame.length > 0) {
       return filterByGenreGame;
     } else if (filterByTagGame.length > 0) {
       return filterByTagGame;
+    } else if (sortByGame.length > 0) {
+      return sortByGame;
     } else {
       return dataGames;
     }
-  }
+  }, [
+    filterBySearchGame,
+    filterByGenreGame,
+    filterByTagGame,
+    sortByGame,
+    dataGames,
+  ]);
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPages = Math.ceil(handleResultFilterGame().length / itemPerPage);
   const setPaginationDataGame = useHandlePagination(
@@ -49,9 +60,8 @@ export default function AllGamePS2(props: propsAllGamePS2) {
 
   useEffect(() => {
     if (handleResultFilterGame().length === 0) return;
-
     setPaginationDataGame(handleResultFilterGame(), currentPage, itemPerPage);
-  }, [handleResultFilterGame(), currentPage, itemPerPage]);
+  }, [setPaginationDataGame, handleResultFilterGame, currentPage, itemPerPage]);
 
   function getPaginationRange(current: number, total: number, delta = 1) {
     const range: number[] = [];

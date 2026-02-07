@@ -74,7 +74,7 @@ export default function GameDetail() {
             </div>
           </div>
           <Link
-            to="/HomePage"
+            to="/AllGames"
             className="mt-8 inline-block text-xl font-semibold tracking-wide bg-slate-800 text-slate-100 px-9 py-1.5 rounded-md"
           >
             Back
