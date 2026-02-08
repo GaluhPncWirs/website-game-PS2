@@ -9,9 +9,10 @@ import {
 import HomePage from "../HomePage/page";
 import AllGames from "../AllGames/page";
 import EmulatorGuide from "../EmulatorGuide/page";
-import SetupEmulator from "../EmulatorGuide/SetupEmulator/page";
 import Contact from "../Contact/page";
 import GameDetail from "../GameDetail/page";
+import GuideEmulator from "../EmulatorGuide/Guide/page";
+import InstallEmulator from "../EmulatorGuide/InstallEmulator/page";
 
 const rootApp = createRoot(document.getElementById("root")!);
 
@@ -36,8 +37,12 @@ const router = createBrowserRouter([
         element: <EmulatorGuide />,
       },
       {
-        path: "SetupEmulator",
-        element: <SetupEmulator />,
+        path: "InstallEmulator/:installEmu",
+        element: <InstallEmulator />,
+      },
+      {
+        path: "GuidesEmulator/:allGuidesEmu",
+        element: <GuideEmulator />,
       },
     ],
   },

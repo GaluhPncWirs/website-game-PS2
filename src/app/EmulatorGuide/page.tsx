@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import GuidesEmulator from "@/layout/guidesEmu/content";
 import RootLayout from "@/layout/rootLayout/content";
 import { Gamepad2, Monitor, Wrench } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 
 export default function EmulatorGuide() {
@@ -33,6 +33,7 @@ export default function EmulatorGuide() {
               nameEmulator="PCSX2"
               descEmulator="the most popular PS2 emulator offering the best compability
                   and a wide range of configuration options."
+              installEmu="PCSX2"
             >
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
@@ -57,12 +58,6 @@ export default function EmulatorGuide() {
                   />
                 </Button>
               </div>
-              <Link
-                to="/EmulatorGuide/SetupEmulator"
-                className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
-              >
-                Setup Guide
-              </Link>
             </CardPS2Emulator>
             <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/aetherSX2-logo.png"
@@ -70,6 +65,7 @@ export default function EmulatorGuide() {
               nameEmulator="AetherSX2"
               descEmulator="the most popular PS2 emulator offering the best compability
                   and a wide range of configuration options."
+              installEmu="AetherSX2"
             >
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
@@ -108,12 +104,6 @@ export default function EmulatorGuide() {
                   />
                 </Button>
               </div>
-              <Link
-                to="/EmulatorGuide/SetupEmulator"
-                className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
-              >
-                Setup Guide
-              </Link>
             </CardPS2Emulator>
             <CardPS2Emulator
               emulatorImg="/images/emulatorGuidePage/damonPS2-logo.png"
@@ -121,6 +111,7 @@ export default function EmulatorGuide() {
               nameEmulator="DamonPS2"
               descEmulator="the most popular PS2 emulator offering the best compability
                   and a wide range of configuration options."
+              installEmu="DamonPS2"
             >
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
@@ -138,19 +129,13 @@ export default function EmulatorGuide() {
                   />
                 </Button>
               </div>
-              <Link
-                to="/EmulatorGuide/SetupEmulator"
-                className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
-              >
-                Setup Guide
-              </Link>
             </CardPS2Emulator>
           </div>
         </div>
         <div className="mt-7">
           <h1 className="text-2xl tracking-wider font-semibold">Guides</h1>
           <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-3 mt-5">
-            <GuidesEmulator>
+            <GuidesEmulator guides="SetupEmulator">
               <div className="flex items-center gap-x-5">
                 <Monitor className="size-9" />
                 <h2 className="text-lg font-semibold tracking-wide">
@@ -159,7 +144,7 @@ export default function EmulatorGuide() {
               </div>
               <p>Learn how to emulate PS2 game on your PC</p>
             </GuidesEmulator>
-            <GuidesEmulator>
+            <GuidesEmulator guides="ConfigureBiosPS2">
               <div className="flex items-center gap-x-5">
                 <img
                   src="/images/emulatorGuidePage/bios.png"
@@ -172,7 +157,7 @@ export default function EmulatorGuide() {
               </div>
               <p>Learn how to emulate PS2 game on your PC</p>
             </GuidesEmulator>
-            <GuidesEmulator>
+            <GuidesEmulator guides="ControllerConfig">
               <div className="flex items-center gap-x-5">
                 <Gamepad2 className="size-9" />
                 <h2 className="text-lg font-semibold tracking-wide">
@@ -181,7 +166,7 @@ export default function EmulatorGuide() {
               </div>
               <p>Learn how to emulate PS2 game on your PC.</p>
             </GuidesEmulator>
-            <GuidesEmulator>
+            <GuidesEmulator guides="TroubleshootTips">
               <div className="flex items-center gap-x-5">
                 <Wrench className="size-9" />
                 <h2 className="text-lg font-semibold tracking-wide">
