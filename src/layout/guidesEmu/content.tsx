@@ -13,7 +13,7 @@ export default function GuidesEmulator({
     <div className="w-52 sm:w-60 bg-slate-100 p-5 flex flex-col gap-y-3 h-full">
       {children}
       <Link
-        to={`/EmulatorGuide/GuidesEmulator/${guides}`}
+        to={`/EmulatorGuide/Guide/${guides}`}
         className="flex bg-slate-700 text-white py-1.5 rounded-md justify-center items-center gap-2"
       >
         Learn More <ArrowRight />

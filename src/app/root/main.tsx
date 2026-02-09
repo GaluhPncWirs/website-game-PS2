@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <InstallEmulator />,
       },
       {
-        path: "GuidesEmulator/:allGuidesEmu",
+        path: "Guide/:allGuidesEmu",
         element: <GuideEmulator />,
       },
     ],

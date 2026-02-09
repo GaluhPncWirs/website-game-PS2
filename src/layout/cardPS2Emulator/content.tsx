@@ -1,24 +1,16 @@
 import type React from "react";
-import { Link } from "react-router-dom";
 
 type propsPS2EmuOverview = {
   emulatorImg: string;
   emulatorAlt: string;
   nameEmulator: string;
   descEmulator: string;
-  installEmu: string;
   children: React.ReactNode;
 };
 
 export default function CardPS2Emulator(props: propsPS2EmuOverview) {
-  const {
-    emulatorImg,
-    emulatorAlt,
-    nameEmulator,
-    descEmulator,
-    installEmu,
-    children,
-  } = props;
+  const { emulatorImg, emulatorAlt, nameEmulator, descEmulator, children } =
+    props;
   return (
     <div className="w-sm md:w-xs h-full flex flex-col">
       <img
@@ -34,12 +26,6 @@ export default function CardPS2Emulator(props: propsPS2EmuOverview) {
           <p className="text-justify">{descEmulator}</p>
         </div>
         {children}
-        <Link
-          to={`/EmulatorGuide/InstallEmulator/${installEmu}`}
-          className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
-        >
-          Setup Guide
-        </Link>
       </div>
     </div>
   );
