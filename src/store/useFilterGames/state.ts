@@ -40,7 +40,7 @@ export const useFilterGames = create<filterGames>((set) => ({
   },
 
   useHandleSortByGame: (gameList, sortByValue) => {
-    if (sortByValue) {
+    if (sortByValue !== null) {
       if (sortByValue === "topRated") {
         const sortByTopRate = gameList.filter(
           (gameTopRate) => Number(gameTopRate.rating) > 9.0,

@@ -11,6 +11,7 @@ import { useHandlePagination } from "@/store/usePageDataGame/state";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
+import Skeleton from "./skeleton";
 
 type propsGamesPopular = {
   itemPerPage: number;
@@ -78,7 +79,7 @@ export default function GamesPopular(props: propsGamesPopular) {
         </PaginationContent>
       </Pagination>
 
-      {isLoading ? <h1>loading...</h1> : children}
+      {isLoading ? <Skeleton /> : children}
     </>
   );
 }

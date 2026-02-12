@@ -4,7 +4,7 @@ export function useMediaQuery() {
   const [isMediaQuery, setIsMediaQuery] = useState<boolean>(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1024px)");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
     function handlerMediaQuery(event: MediaQueryListEvent | MediaQueryList) {
       setIsMediaQuery(event.matches);
     }

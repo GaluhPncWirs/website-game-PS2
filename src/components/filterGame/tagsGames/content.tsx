@@ -23,8 +23,6 @@ export default function TagsGames() {
   useEffect(() => {
     if (activeAlphabet) {
       handleByTagGame(dataGames, activeAlphabet);
-    } else {
-      handleByTagGame(dataGames, null);
     }
   }, [handleByTagGame, dataGames, activeAlphabet]);
 
@@ -42,7 +40,7 @@ export default function TagsGames() {
           return (
             <Button
               key={item}
-              className={`font-semibold text-lg ${isActive ? `bg-slate-600` : `bg-slate-400`}`}
+              className={`font-semibold text-lg ${isActive || isDisabled ? `bg-slate-600` : `bg-slate-400`}`}
               onClick={() =>
                 setActiveAlphabet((prev) => (prev === item ? null : item))
               }

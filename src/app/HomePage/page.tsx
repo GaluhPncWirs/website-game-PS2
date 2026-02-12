@@ -42,7 +42,7 @@ export default function HomePage() {
           {chunkedGamesPopular.map((row, i) => (
             <div
               key={i}
-              className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-3"
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center gap-3"
             >
               {row.map((item, j) => (
                 <CoverGames

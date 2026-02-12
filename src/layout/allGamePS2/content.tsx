@@ -13,6 +13,12 @@ import { useHandlePagination } from "@/store/usePageDataGame/state";
 import { useFilterGames } from "@/store/useFilterGames/state";
 import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import { useShallow } from "zustand/shallow";
+import Skeleton from "./skeleton";
+import SearchGames from "@/components/filterGame/searchGames/content";
+import GenreGames from "@/components/filterGame/genreGames/content";
+import TagsGames from "@/components/filterGame/tagsGames/content";
+import { Button } from "@/components/ui/button";
+import { useFiltersActive } from "@/store/useFiltersActive/state";
 
 type propsAllGamePS2 = {
   itemPerPage: number;
@@ -27,6 +33,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
       isLoading: state.isLoading,
     })),
   );
+  const resetFilter = useFiltersActive((state) => state.setDisabledFilter);
   const filterBySearchGame = useFilterGames((state) => state.filterBySearch);
   const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
   const filterByTagGame = useFilterGames((state) => state.filterByTag);
@@ -99,7 +106,17 @@ export default function AllGamePS2(props: propsAllGamePS2) {
     <div className="mt-7">
       <SortGames />
 
-      {isLoading ? <h1>loading...</h1> : children}
+      <div className="lg:flex gap-5 my-7">
+        <div className="lg:w-1/5 mb-5 flex flex-col gap-5">
+          <SearchGames />
+          <GenreGames />
+          <TagsGames />
+          <Button onClick={() => resetFilter(null)} className="w-fit">
+            Reset Filter
+          </Button>
+        </div>
+        {isLoading ? <Skeleton /> : children}
+      </div>
 
       <Pagination>
         <PaginationContent>
