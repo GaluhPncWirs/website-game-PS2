@@ -39,7 +39,6 @@ export default function AllGamePS2(props: propsAllGamePS2) {
       setResetFilter: state.setDisabledFilter,
     })),
   );
-  // const resetFilter = useFiltersActive((state) => state.setDisabledFilter);
   const { filterBySearchGame, filterByGenreGame, filterByTagGame, sortByGame } =
     useFilterGames(
       useShallow((state) => ({

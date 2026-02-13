@@ -65,11 +65,13 @@ export default function SearchGames() {
   return (
     <Command>
       <CommandInput
-        onValueChange={setSearchGame}
+        onValueChange={(val) => {
+          setSearchGame(val);
+          setDisabledFilter("search");
+        }}
         value={searchGame}
         placeholder="Search Games..."
         disabled={isDisabled}
-        onFocus={() => setDisabledFilter("search")}
         className={`w-full ${isDisabled ? "opacity-50" : ""}`}
       />
       {isOpenSearchGame && (

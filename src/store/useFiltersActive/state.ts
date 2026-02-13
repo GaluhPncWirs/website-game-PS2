@@ -3,7 +3,7 @@ import { create } from "zustand";
 type filtersActive = {
   disabledFilter: string | null;
   setDisabledFilter: (
-    activeFilters: "search" | "genre" | "tags" | null,
+    activeFilters: "search" | "genre" | "tags" | "sort" | null,
   ) => void;
 };
 

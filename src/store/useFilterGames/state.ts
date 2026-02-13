@@ -36,24 +36,24 @@ export const useFilterGames = create<filterGames>((set) => ({
     const filterByTags = gameList.filter((item) =>
       item.cleanTitle.startsWith(valueTag),
     );
-    set({ filterByTag: filterByTags });
+    if (filterByTags.length > 0) {
+      set({ filterByTag: filterByTags });
+    } else {
+      set({ filterByTag: [] });
+    }
   },
 
   useHandleSortByGame: (gameList, sortByValue) => {
-    if (sortByValue !== null) {
-      if (sortByValue === "topRated") {
-        const sortByTopRate = gameList.filter(
-          (gameTopRate) => Number(gameTopRate.rating) > 9.0,
-        );
-        set({ sortBy: sortByTopRate });
-      } else if (sortByValue === "newest") {
-        const sortByNewest = gameList
-          .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-          .slice(0, 50);
-        set({ sortBy: sortByNewest });
-      } else {
-        set({ sortBy: gameList });
-      }
+    if (sortByValue === "topRated") {
+      const sortByTopRate = gameList.filter(
+        (gameTopRate) => Number(gameTopRate.rating) > 9.0,
+      );
+      set({ sortBy: sortByTopRate });
+    } else if (sortByValue === "newest") {
+      const sortByNewest = gameList
+        .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+        .slice(0, 50);
+      set({ sortBy: sortByNewest });
     } else {
       set({ sortBy: gameList });
     }
