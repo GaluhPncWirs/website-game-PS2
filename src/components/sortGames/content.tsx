@@ -29,7 +29,6 @@ export default function SortGames() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {/* <SelectItem value="mostDownloaded">Most Downloaded</SelectItem> */}
             <SelectItem value="newest">Newest</SelectItem>
             <SelectItem value="topRated">Top Rated</SelectItem>
           </SelectGroup>

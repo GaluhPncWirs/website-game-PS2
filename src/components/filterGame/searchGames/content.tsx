@@ -56,6 +56,12 @@ export default function SearchGames() {
     }
   }, [searchGame, isOpenSearchGame]);
 
+  useEffect(() => {
+    if (disabledFilter === null) {
+      setSearchGame("");
+    }
+  }, [disabledFilter]);
+
   return (
     <Command>
       <CommandInput

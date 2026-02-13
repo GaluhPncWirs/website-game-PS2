@@ -33,25 +33,41 @@ export default function AllGamePS2(props: propsAllGamePS2) {
       isLoading: state.isLoading,
     })),
   );
-  const resetFilter = useFiltersActive((state) => state.setDisabledFilter);
-  const filterBySearchGame = useFilterGames((state) => state.filterBySearch);
-  const filterByGenreGame = useFilterGames((state) => state.filterByGenre);
-  const filterByTagGame = useFilterGames((state) => state.filterByTag);
-  const sortByGame = useFilterGames((state) => state.sortBy);
+  const { disabledFilter, setResetFilter } = useFiltersActive(
+    useShallow((state) => ({
+      disabledFilter: state.disabledFilter,
+      setResetFilter: state.setDisabledFilter,
+    })),
+  );
+  // const resetFilter = useFiltersActive((state) => state.setDisabledFilter);
+  const { filterBySearchGame, filterByGenreGame, filterByTagGame, sortByGame } =
+    useFilterGames(
+      useShallow((state) => ({
+        filterBySearchGame: state.filterBySearch,
+        filterByGenreGame: state.filterByGenre,
+        filterByTagGame: state.filterByTag,
+        sortByGame: state.sortBy,
+      })),
+    );
 
   const handleResultFilterGame = useCallback(() => {
-    if (filterBySearchGame.length > 0) {
-      return filterBySearchGame;
-    } else if (filterByGenreGame.length > 0) {
-      return filterByGenreGame;
-    } else if (filterByTagGame.length > 0) {
-      return filterByTagGame;
-    } else if (sortByGame.length > 0) {
-      return sortByGame;
+    if (disabledFilter !== null) {
+      if (filterBySearchGame.length > 0) {
+        return filterBySearchGame;
+      } else if (filterByGenreGame.length > 0) {
+        return filterByGenreGame;
+      } else if (filterByTagGame.length > 0) {
+        return filterByTagGame;
+      } else if (sortByGame.length > 0) {
+        return sortByGame;
+      } else {
+        return dataGames;
+      }
     } else {
       return dataGames;
     }
   }, [
+    disabledFilter,
     filterBySearchGame,
     filterByGenreGame,
     filterByTagGame,
@@ -111,7 +127,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
           <SearchGames />
           <GenreGames />
           <TagsGames />
-          <Button onClick={() => resetFilter(null)} className="w-fit">
+          <Button onClick={() => setResetFilter(null)} className="w-fit">
             Reset Filter
           </Button>
         </div>

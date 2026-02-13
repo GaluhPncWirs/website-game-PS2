@@ -5,11 +5,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useFilterGames } from "@/store/useFilterGames/state";
 import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useShallow } from "zustand/shallow";
 import Skeleton from "./skeleton";
 
@@ -26,33 +25,24 @@ export default function GamesPopular(props: propsGamesPopular) {
       isLoading: props.isLoading,
     })),
   );
-  const { handleSortByTopRated, sortByTopRated } = useFilterGames(
-    useShallow((state) => ({
-      handleSortByTopRated: state.useHandleSortByGame,
-      sortByTopRated: state.sortBy,
-    })),
-  );
-  const totalPages = Math.ceil(sortByTopRated.length / itemPerPage);
+  const gamePopular = useMemo(() => {
+    const sortByTopRate = dataGames.filter(
+      (gameTopRate) => Number(gameTopRate.rating) > 9.0,
+    );
+    return sortByTopRate;
+  }, [dataGames]);
+
+  const totalPages = Math.ceil(gamePopular.length / itemPerPage);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const setPaginationDataGame = useHandlePagination(
     (state) => state.setPaginationDataGamePopular,
   );
 
   useEffect(() => {
-    handleSortByTopRated(dataGames, "topRated");
-  }, [handleSortByTopRated, dataGames]);
+    if (isLoading || gamePopular.length === 0) return;
 
-  useEffect(() => {
-    if (isLoading || sortByTopRated.length === 0) return;
-
-    setPaginationDataGame(sortByTopRated, currentPage, itemPerPage);
-  }, [
-    setPaginationDataGame,
-    isLoading,
-    sortByTopRated,
-    currentPage,
-    itemPerPage,
-  ]);
+    setPaginationDataGame(gamePopular, currentPage, itemPerPage);
+  }, [setPaginationDataGame, isLoading, gamePopular, currentPage, itemPerPage]);
 
   return (
     <>

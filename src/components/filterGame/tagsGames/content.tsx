@@ -26,6 +26,12 @@ export default function TagsGames() {
     }
   }, [handleByTagGame, dataGames, activeAlphabet]);
 
+  useEffect(() => {
+    if (disabledFilter === null) {
+      setActiveAlphabet(null);
+    }
+  }, [disabledFilter]);
+
   return (
     <div className="border border-slate-400 bg-slate-100">
       <h2 className="text-xl font-medium border-b border-b-slate-400 px-5 py-2 bg-slate-300">
@@ -40,10 +46,8 @@ export default function TagsGames() {
           return (
             <Button
               key={item}
-              className={`font-semibold text-lg ${isActive || isDisabled ? `bg-slate-600` : `bg-slate-400`}`}
-              onClick={() =>
-                setActiveAlphabet((prev) => (prev === item ? null : item))
-              }
+              className={`font-semibold text-lg ${isActive ? `bg-slate-600` : `bg-slate-400`}`}
+              onClick={() => setActiveAlphabet(item)}
             >
               {item}
             </Button>
