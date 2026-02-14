@@ -27,6 +27,15 @@ type propsAllGamePS2 = {
 
 export default function AllGamePS2(props: propsAllGamePS2) {
   const { itemPerPage, children } = props;
+  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
+
+  useEffect(() => {
+    let isMounted = true;
+    handleGetData(isMounted);
+    return () => {
+      isMounted = false;
+    };
+  }, [handleGetData]);
   const { dataGames, isLoading } = useGetDataPS2(
     useShallow((state) => ({
       dataGames: state.dataGames,

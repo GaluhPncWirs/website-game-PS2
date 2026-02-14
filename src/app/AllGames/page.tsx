@@ -3,21 +3,10 @@ import RootLayout from "@/layout/rootLayout/content";
 import CoverGameWithDesc from "@/components/coverGameWithDesc/content";
 import { useHandlePagination } from "@/store/usePageDataGame/state";
 import { useMediaQuery } from "@/hooks/mediaQuery";
-import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
-import { useEffect } from "react";
 
 export default function AllGames() {
   const chunkedGames = useHandlePagination((state) => state.dataListGames);
   const isMediaQuery = useMediaQuery();
-  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
-
-  useEffect(() => {
-    let isMounted = true;
-    handleGetData(isMounted);
-    return () => {
-      isMounted = false;
-    };
-  }, [handleGetData]);
 
   return (
     <RootLayout

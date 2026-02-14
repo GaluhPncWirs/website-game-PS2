@@ -88,7 +88,7 @@ export default function HomePage() {
             descEmulator="Android exclusive emulator focused on high compability and performance"
           >
             <Link
-              to="https://pcsx2.net/downloads/"
+              to="https://aethersx2.app/"
               target="_blank"
               className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
             >
@@ -102,7 +102,7 @@ export default function HomePage() {
             descEmulator="the most popular PS2 emulator offering the best compability"
           >
             <Link
-              to="https://pcsx2.net/downloads/"
+              to="https://play.google.com/store/apps/details?id=com.damonplay.damonps2.free&hl=en-US"
               target="_blank"
               className="w-full bg-slate-700 text-xl text-white text-center rounded-md py-2"
             >

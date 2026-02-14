@@ -24,6 +24,7 @@ export default function CardPS2Emulator(props: propsPS2EmuOverview) {
             {nameEmulator}
           </h2>
           <p className="text-justify">{descEmulator}</p>
+          <h3 className="mt-1">Compatible on :</h3>
         </div>
         {children}
       </div>

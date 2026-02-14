@@ -7,7 +7,13 @@ import {
 import { Button } from "@/components/ui/button";
 import GuidesEmulator from "@/layout/guidesEmu/content";
 import RootLayout from "@/layout/rootLayout/content";
-import { Gamepad2, Monitor, Wrench } from "lucide-react";
+import {
+  Gamepad2,
+  Monitor,
+  MonitorCog,
+  Smartphone,
+  Wrench,
+} from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 
@@ -68,41 +74,12 @@ export default function EmulatorGuide() {
               emulatorImg="/images/emulatorGuidePage/aetherSX2-logo.png"
               emulatorAlt="AetherSX2"
               nameEmulator="AetherSX2"
-              descEmulator="the most popular PS2 emulator offering the best compability
-                  and a wide range of configuration options."
+              descEmulator="A powerful mobile PS2 emulator with high compatibility, solid performance, and broad customization options."
             >
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
                   <img
-                    src="/images/emulatorGuidePage/windows.png"
-                    alt="Windows"
-                    className="size-7"
-                  />
-                </Button>
-                <Button variant="secondary">
-                  <img
-                    src="/images/emulatorGuidePage/macOS.png"
-                    alt="Windows"
-                    className="size-8"
-                  />
-                </Button>
-                <Button variant="secondary">
-                  <img
-                    src="/images/emulatorGuidePage/linux.png"
-                    alt="Windows"
-                    className="size-7"
-                  />
-                </Button>
-                <Button variant="secondary">
-                  <img
                     src="/images/emulatorGuidePage/android.png"
-                    alt="Windows"
-                    className="size-7"
-                  />
-                </Button>
-                <Button variant="secondary">
-                  <img
-                    src="/images/emulatorGuidePage/IOS.png"
                     alt="Windows"
                     className="size-7"
                   />
@@ -119,20 +96,12 @@ export default function EmulatorGuide() {
               emulatorImg="/images/emulatorGuidePage/damonPS2-logo.png"
               emulatorAlt="DamonPS2"
               nameEmulator="DamonPS2"
-              descEmulator="the most popular PS2 emulator offering the best compability
-                  and a wide range of configuration options."
+              descEmulator="A high-performance PS2 emulator with fast gameplay, hardware acceleration, and flexible graphics settings."
             >
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
                   <img
                     src="/images/emulatorGuidePage/android.png"
-                    alt="Windows"
-                    className="size-7"
-                  />
-                </Button>
-                <Button variant="secondary">
-                  <img
-                    src="/images/emulatorGuidePage/IOS.png"
                     alt="Windows"
                     className="size-7"
                   />
@@ -152,7 +121,8 @@ export default function EmulatorGuide() {
           <div className="grid grid-cols-2 lg:grid-cols-4 place-items-center gap-3 mt-5">
             <GuidesEmulator guides="SetupEmulator">
               <div className="flex items-center gap-x-5">
-                <Monitor className="size-9" />
+                <MonitorCog className="size-9" />
+
                 <h2 className="text-lg font-semibold tracking-wide">
                   Setup the emulator
                 </h2>
@@ -193,29 +163,83 @@ export default function EmulatorGuide() {
           </div>
         </div>
         <div className="mt-7">
+          <h1 className="text-2xl tracking-wider font-semibold">
+            Minimum Hardware Requirements
+          </h1>
+          <div className="mt-4 gap-5 grid grid-cols-1 md:grid-cols-2">
+            <div className="bg-slate-100 p-5 rounded-md">
+              <Monitor className="size-9" />
+              <h2 className="text-lg tracking-wide font-medium mt-3">
+                Minimum desktop requirements to run PS2 games
+              </h2>
+              <ul>
+                <li>
+                  CPU: Dual-core processor (Intel Core i3 / AMD equivalent)
+                </li>
+                <li>RAM: 4 GB</li>
+                <li>GPU: DirectX 11 compatible graphics</li>
+                <li>Storage: At least 10 GB free space</li>
+                <li>OS: Windows 10 or later / Linux</li>
+              </ul>
+            </div>
+            <div className="bg-slate-100 p-5 rounded-md">
+              <Smartphone className="size-9" />
+              <h2 className="text-lg tracking-wide font-medium mt-3">
+                Minimum android requirements to run PS2 games
+              </h2>
+              <ul>
+                <li>OS: Android 9 or higher</li>
+                <li>RAM: 4 GB</li>
+                <li>CPU: Snapdragon 660 / equivalent</li>
+                <li>Storage: 8-10 GB free space</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="mt-7">
           <h1 className="text-2xl tracking-wider font-semibold">FAQ</h1>
           <Accordion type="single" collapsible>
-            <AccordionItem value="Bios PS2">
+            <AccordionItem value="downloadGameFree">
               <AccordionTrigger>
-                Where can I download PS2 Bios ?
+                Is it free to download PS2 games?
               </AccordionTrigger>
               <AccordionContent>
-                Due to copyright restrictions, PS2 BIOS files cannot be legally
-                downloaded from third-party websites. The only legal way to
-                obtain a PS2 BIOS is by dumping it directly from your own
-                PlayStation 2 console using appropriate tools. This ensures
-                compliance with copyright laws and avoids legal issues.
+                Yes, all downloadable files available on the platform can be
+                accessed for free unless stated otherwise.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="tips using PS2">
-              <AccordionTrigger>Tips for using PS2 Emulator</AccordionTrigger>
+            <AccordionItem value="formatFile">
+              <AccordionTrigger>
+                What file format are the games in?
+              </AccordionTrigger>
               <AccordionContent>
-                Make sure you use a legal PS2 BIOS dumped from your own console.
-                Always use the latest emulator version for better compatibility
-                and performance. Adjust graphics settings according to your
-                device specifications, enable speed hacks carefully, and
-                regularly save your progress using both in-game saves and save
-                states.
+                Most games are provided in ISO, BIN, or compressed formats such
+                as ZIP/7Z.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="fileCorrupted">
+              <AccordionTrigger>
+                The file is corrupted what should I do?
+              </AccordionTrigger>
+              <AccordionContent>
+                Try re-downloading the file or use a different mirror link if
+                available.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="gameLag">
+              <AccordionTrigger>
+                Why does the game lag or crash?
+              </AccordionTrigger>
+              <AccordionContent>
+                Performance issues usually occur due to low device specs or
+                incorrect emulator settings.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="downloadSave">
+              <AccordionTrigger>Are the downloads safe?</AccordionTrigger>
+              <AccordionContent>
+                All files are scanned, but we still recommend using antivirus
+                software for extra security.
               </AccordionContent>
             </AccordionItem>
           </Accordion>

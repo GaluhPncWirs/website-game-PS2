@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import RootLayout from "@/layout/rootLayout/content";
+import { Link } from "react-router-dom";
 
 export default function Contact() {
   function handleSubmitMessage(event: React.FormEvent<HTMLFormElement>) {
@@ -49,8 +50,8 @@ export default function Contact() {
       <h1 className="text-3xl font-semibold tracking-wide my-5">
         Other methods
       </h1>
-      <div className="flex gap-x-5 items-center">
-        <div className="flex flex-col items-center justify-center gap-y-3 max-w-xs bg-blue-100 p-5 rounded-md">
+      <div className="flex flex-col gap-5 items-center sm:flex-row">
+        <div className="flex flex-col items-center justify-center gap-y-3 w-full sm:max-w-xs bg-blue-100 p-5 rounded-md">
           <img
             src="/images/contact/discord.png"
             alt="Discord"
@@ -62,8 +63,11 @@ export default function Contact() {
             </h2>
             <p>Connect with our community and get support in real time.</p>
           </div>
+          <Link to="#" className="font-semibold text-lg tracking-wide">
+            Join us
+          </Link>
         </div>
-        <div className="flex flex-col items-center justify-center gap-y-3 max-w-xs bg-blue-100 p-5 rounded-md">
+        <div className="flex flex-col items-center justify-center gap-y-3 w-full sm:max-w-xs bg-blue-100 p-5 rounded-md">
           <img
             src="/images/footer/facebook.png"
             alt="Facebook"
@@ -75,6 +79,9 @@ export default function Contact() {
             </h2>
             <p>Send us a message on our facebook page for quick</p>
           </div>
+          <Link to="#" className="font-semibold text-lg tracking-wide">
+            Join us
+          </Link>
         </div>
       </div>
     </RootLayout>
