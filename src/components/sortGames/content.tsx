@@ -8,14 +8,12 @@ import {
 } from "@/components/ui/select";
 import { useFilterGames } from "@/store/useFilterGames/state";
 import { useFiltersActive } from "@/store/useFiltersActive/state";
-import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
 
 export default function SortGames() {
   const [sortByValue, setSortByValue] = useState<string | null>(null);
   const handleSortByGame = useFilterGames((state) => state.useHandleSortByGame);
-  const dataGames = useGetDataPS2((props) => props.dataGames);
   const { disabledFilter, setDisabledFilter } = useFiltersActive(
     useShallow((state) => ({
       disabledFilter: state.disabledFilter,
@@ -27,8 +25,8 @@ export default function SortGames() {
 
   useEffect(() => {
     if (!sortByValue) return;
-    handleSortByGame(dataGames, sortByValue);
-  }, [handleSortByGame, dataGames, sortByValue]);
+    handleSortByGame(sortByValue);
+  }, [handleSortByGame, sortByValue]);
 
   return (
     <div className="flex justify-between items-center mb-3">

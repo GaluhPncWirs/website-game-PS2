@@ -2,60 +2,98 @@ import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { create } from "zustand";
 
 type filterGames = {
-  filterBySearch: dataGamePS2[];
-  filterByGenre: dataGamePS2[];
-  filterByTag: dataGamePS2[];
-  sortBy: dataGamePS2[];
-  useHandleSearchGame: (gameList: dataGamePS2) => void;
-  useHandleGenreGame: (gameList: dataGamePS2[], genreIsCheked: string) => void;
-  useHandleTagGame: (gameList: dataGamePS2[], valueTag: string) => void;
-  useHandleSortByGame: (
-    gameList: dataGamePS2[],
-    sortByValue: string | null,
-  ) => void;
+  allGames: dataGamePS2[];
+  filteredGames: dataGamePS2[];
+  searchQuery: string;
+  selectedGenre: dataGamePS2[] | null;
+  sort: string | null;
+  setGames: (games: dataGamePS2) => void;
+  useHandleSearchGame: (query: string) => void;
+  useHandleGenreGame: (valueGenre: any) => void;
+  useHandleTagGame: (valueTag: string) => void;
+  useHandleSortByGame: (sortBy: string) => void;
+  resetFilter: () => void;
 };
 
 export const useFilterGames = create<filterGames>((set) => ({
-  filterBySearch: [],
-  filterByGenre: [],
-  filterByTag: [],
-  sortBy: [],
+  allGames: [],
+  filteredGames: [],
 
-  useHandleSearchGame: (gameList) => {
-    set({ filterBySearch: [gameList] });
-  },
+  searchQuery: "",
+  selectedGenre: null,
+  selectedTag: null,
+  sort: null,
 
-  useHandleGenreGame: (gameList, genreIsCheked) => {
-    const filterByGenre = gameList.filter((genreGame) =>
-      genreGame.genre.includes(genreIsCheked),
-    );
-    set({ filterByGenre: filterByGenre });
-  },
+  setGames: (games) => set({ allGames: games, filteredGames: games }),
 
-  useHandleTagGame: (gameList, valueTag) => {
-    const filterByTags = gameList.filter((item) =>
-      item.cleanTitle.startsWith(valueTag),
-    );
-    if (filterByTags.length > 0) {
-      set({ filterByTag: filterByTags });
-    } else {
-      set({ filterByTag: [] });
-    }
-  },
-
-  useHandleSortByGame: (gameList, sortByValue) => {
-    if (sortByValue === "topRated") {
-      const sortByTopRate = gameList.filter(
-        (gameTopRate) => Number(gameTopRate.rating) > 9.0,
+  useHandleSearchGame: (query) =>
+    set((state) => {
+      const filtered = state.allGames.filter((game) =>
+        game.cleanTitle?.toLowerCase().includes(query),
       );
-      set({ sortBy: sortByTopRate });
-    } else if (sortByValue === "newest") {
-      const sortByNewest = gameList
-        .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-        .slice(0, 50);
-      set({ sortBy: sortByNewest });
-    } else {
-      set({ sortBy: gameList });
-    }
+      return {
+        searchQuery: query,
+        filteredGames: filtered,
+      };
+    }),
+
+  useHandleGenreGame: (valueGenre) => {
+    set((state) => {
+      const filtered = state.allGames.filter((game) =>
+        game.genre.includes(valueGenre),
+      );
+      return {
+        selectedGenre: valueGenre,
+        filteredGames: filtered,
+      };
+    });
+  },
+
+  useHandleTagGame: (valueTag) => {
+    set((state) => {
+      const filterByTags = state.allGames.filter((item) =>
+        item.cleanTitle.startsWith(valueTag),
+      );
+      return {
+        selectedTag: valueTag,
+        filteredGames: filterByTags,
+      };
+    });
+  },
+
+  useHandleSortByGame: (sortBy) => {
+    set((state) => {
+      if (sortBy === "topRated") {
+        const sortByTopRate = state.allGames.filter(
+          (gameTopRate) => Number(gameTopRate.rating) > 9.0,
+        );
+        return {
+          sort: sortBy,
+          filteredGames: sortByTopRate,
+        };
+      } else if (sortBy === "newest") {
+        const sortByNewest = state.allGames
+          .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+          .slice(0, 50);
+        return {
+          sort: sortBy,
+          filteredGames: sortByNewest,
+        };
+      } else {
+        return {
+          filteredGames: state.allGames,
+        };
+      }
+    });
+  },
+
+  resetFilter: () => {
+    set((state) => ({
+      searchQuery: "",
+      selectedGenre: null,
+      selectedTag: null,
+      sort: null,
+      filteredGames: state.allGames,
+    }));
   },
 }));

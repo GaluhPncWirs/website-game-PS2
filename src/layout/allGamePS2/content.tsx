@@ -18,7 +18,6 @@ import SearchGames from "@/components/filterGame/searchGames/content";
 import GenreGames from "@/components/filterGame/genreGames/content";
 import TagsGames from "@/components/filterGame/tagsGames/content";
 import { Button } from "@/components/ui/button";
-import { useFiltersActive } from "@/store/useFiltersActive/state";
 
 type propsAllGamePS2 = {
   itemPerPage: number;
@@ -27,8 +26,9 @@ type propsAllGamePS2 = {
 
 export default function AllGamePS2(props: propsAllGamePS2) {
   const { itemPerPage, children } = props;
-  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
 
+  // getDataGames
+  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
   useEffect(() => {
     let isMounted = true;
     handleGetData(isMounted);
@@ -42,46 +42,28 @@ export default function AllGamePS2(props: propsAllGamePS2) {
       isLoading: state.isLoading,
     })),
   );
-  const { disabledFilter, setResetFilter } = useFiltersActive(
+
+  // filtered game
+  const { filteredGames, setGames, resetFilter } = useFilterGames(
     useShallow((state) => ({
-      disabledFilter: state.disabledFilter,
-      setResetFilter: state.setDisabledFilter,
+      filteredGames: state.filteredGames,
+      setGames: state.setGames,
+      resetFilter: state.resetFilter,
     })),
   );
-  const { filterBySearchGame, filterByGenreGame, filterByTagGame, sortByGame } =
-    useFilterGames(
-      useShallow((state) => ({
-        filterBySearchGame: state.filterBySearch,
-        filterByGenreGame: state.filterByGenre,
-        filterByTagGame: state.filterByTag,
-        sortByGame: state.sortBy,
-      })),
-    );
+
+  useEffect(() => {
+    if (isLoading) return;
+    setGames(dataGames);
+  }, [isLoading, setGames, dataGames]);
 
   const handleResultFilterGame = useCallback(() => {
-    if (disabledFilter !== null) {
-      if (filterBySearchGame.length > 0) {
-        return filterBySearchGame;
-      } else if (filterByGenreGame.length > 0) {
-        return filterByGenreGame;
-      } else if (filterByTagGame.length > 0) {
-        return filterByTagGame;
-      } else if (sortByGame.length > 0) {
-        return sortByGame;
-      } else {
-        return dataGames;
-      }
+    if (filteredGames.length > 0) {
+      return filteredGames;
     } else {
       return dataGames;
     }
-  }, [
-    disabledFilter,
-    filterBySearchGame,
-    filterByGenreGame,
-    filterByTagGame,
-    sortByGame,
-    dataGames,
-  ]);
+  }, [filteredGames, dataGames]);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPages = Math.ceil(handleResultFilterGame().length / itemPerPage);
@@ -135,7 +117,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
           <SearchGames />
           <GenreGames />
           <TagsGames />
-          <Button onClick={() => setResetFilter(null)} className="w-fit">
+          <Button onClick={resetFilter} className="w-fit">
             Reset Filter
           </Button>
         </div>

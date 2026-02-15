@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useFilterGames } from "@/store/useFilterGames/state";
 import { useFiltersActive } from "@/store/useFiltersActive/state";
-import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
 import { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
 
@@ -9,7 +8,6 @@ export default function TagsGames() {
   const alphabeth = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i),
   );
-  const dataGames = useGetDataPS2((state) => state.dataGames);
   const handleByTagGame = useFilterGames((state) => state.useHandleTagGame);
   const [activeAlphabet, setActiveAlphabet] = useState<string | null>(null);
   const { disabledFilter, setDisabledFilter } = useFiltersActive(
@@ -22,15 +20,15 @@ export default function TagsGames() {
 
   useEffect(() => {
     if (activeAlphabet) {
-      handleByTagGame(dataGames, activeAlphabet);
+      handleByTagGame(activeAlphabet);
     }
-  }, [handleByTagGame, dataGames, activeAlphabet]);
+  }, [handleByTagGame, activeAlphabet]);
 
-  useEffect(() => {
-    if (disabledFilter === null) {
-      setActiveAlphabet(null);
-    }
-  }, [disabledFilter]);
+  // useEffect(() => {
+  //   if (disabledFilter === null) {
+  //     setActiveAlphabet(null);
+  //   }
+  // }, [disabledFilter]);
 
   return (
     <div className="border border-slate-400 bg-slate-100">

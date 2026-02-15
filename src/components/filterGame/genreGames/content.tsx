@@ -1,8 +1,7 @@
 import { Input } from "../../ui/input";
 import { useFilterGames } from "@/store/useFilterGames/state";
 import { useFiltersActive } from "@/store/useFiltersActive/state";
-import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useShallow } from "zustand/shallow";
 
 const dataGenreGames = [
@@ -21,7 +20,6 @@ const dataGenreGames = [
 
 export default function GenreGames() {
   const filterByGenre = useFilterGames((state) => state.useHandleGenreGame);
-  const dataGames = useGetDataPS2((state) => state.dataGames);
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const { disabledFilter, setDisabledFilter } = useFiltersActive(
     useShallow((state) => ({
@@ -32,14 +30,14 @@ export default function GenreGames() {
   const isDisabled = disabledFilter !== null && disabledFilter !== "genre";
   function handleGenreIsCheked(event: Event) {
     const targetValue = event.target as HTMLInputElement;
-    filterByGenre(dataGames, targetValue.value);
+    filterByGenre(targetValue.value);
   }
 
-  useEffect(() => {
-    if (disabledFilter === null) {
-      setSelectedGenre(null);
-    }
-  }, [disabledFilter]);
+  // useEffect(() => {
+  //   if (disabledFilter === null) {
+  //     setSelectedGenre(null);
+  //   }
+  // }, [disabledFilter]);
 
   return (
     <div>
