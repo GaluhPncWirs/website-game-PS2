@@ -1,7 +1,7 @@
 import { Input } from "../../ui/input";
 import { useFilterGames } from "@/store/useFilterGames/state";
 import { useFiltersActive } from "@/store/useFiltersActive/state";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
 
 const dataGenreGames = [
@@ -19,25 +19,25 @@ const dataGenreGames = [
 ];
 
 export default function GenreGames() {
-  const filterByGenre = useFilterGames((state) => state.useHandleGenreGame);
-  const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
-  const { disabledFilter, setDisabledFilter } = useFiltersActive(
+  const { setFilterByGenre, resetFilter, disabledFilter } = useFilterGames(
     useShallow((state) => ({
+      setFilterByGenre: state.useHandleGenreGame,
+      resetFilter: state.resetFilter,
       disabledFilter: state.disabledFilter,
-      setDisabledFilter: state.setDisabledFilter,
     })),
   );
+  const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const isDisabled = disabledFilter !== null && disabledFilter !== "genre";
   function handleGenreIsCheked(event: Event) {
     const targetValue = event.target as HTMLInputElement;
-    filterByGenre(targetValue.value);
+    setFilterByGenre(targetValue.value);
   }
 
-  // useEffect(() => {
-  //   if (disabledFilter === null) {
-  //     setSelectedGenre(null);
-  //   }
-  // }, [disabledFilter]);
+  useEffect(() => {
+    if (disabledFilter === null) {
+      setSelectedGenre(null);
+    }
+  }, [disabledFilter]);
 
   return (
     <div>
@@ -47,7 +47,7 @@ export default function GenreGames() {
       <div className="border border-slate-400 px-5 py-3 bg-slate-100">
         <ul
           className={`flex flex-wrap gap-3 items-center ${isDisabled ? "opacity-50 pointer-events-none" : ""}`}
-          onClick={() => setDisabledFilter("genre")}
+          onClick={() => resetFilter("genre")}
         >
           {dataGenreGames.map((item: string, i: number) => (
             <li className="flex items-center gap-x-2" key={i}>

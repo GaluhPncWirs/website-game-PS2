@@ -117,7 +117,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
           <SearchGames />
           <GenreGames />
           <TagsGames />
-          <Button onClick={resetFilter} className="w-fit">
+          <Button onClick={() => resetFilter(null)} className="w-fit">
             Reset Filter
           </Button>
         </div>

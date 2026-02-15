@@ -7,12 +7,15 @@ type filterGames = {
   searchQuery: string;
   selectedGenre: dataGamePS2[] | null;
   sort: string | null;
+  disabledFilter: string | null;
   setGames: (games: dataGamePS2) => void;
   useHandleSearchGame: (query: string) => void;
   useHandleGenreGame: (valueGenre: any) => void;
   useHandleTagGame: (valueTag: string) => void;
   useHandleSortByGame: (sortBy: string) => void;
-  resetFilter: () => void;
+  resetFilter: (
+    activeFilters: "search" | "genre" | "tags" | "sort" | null,
+  ) => void;
 };
 
 export const useFilterGames = create<filterGames>((set) => ({
@@ -23,6 +26,8 @@ export const useFilterGames = create<filterGames>((set) => ({
   selectedGenre: null,
   selectedTag: null,
   sort: null,
+
+  disabledFilter: null,
 
   setGames: (games) => set({ allGames: games, filteredGames: games }),
 
@@ -87,13 +92,14 @@ export const useFilterGames = create<filterGames>((set) => ({
     });
   },
 
-  resetFilter: () => {
+  resetFilter: (activeFilter) => {
     set((state) => ({
       searchQuery: "",
       selectedGenre: null,
       selectedTag: null,
       sort: null,
       filteredGames: state.allGames,
+      disabledFilter: activeFilter,
     }));
   },
 }));

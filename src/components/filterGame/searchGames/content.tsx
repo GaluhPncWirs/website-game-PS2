@@ -7,7 +7,6 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useFilterGames } from "@/store/useFilterGames/state";
-import { useFiltersActive } from "@/store/useFiltersActive/state";
 import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { useEffect, useRef, useState } from "react";
 import { useShallow } from "zustand/shallow";
@@ -16,18 +15,15 @@ export default function SearchGames() {
   const [searchGame, setSearchGame] = useState<string>("");
   const listGamesRef = useRef<HTMLDivElement>(null);
   const [isOpenSearchGame, setIsOpenSearchGame] = useState<boolean>(true);
-  const { setSelectedGame, filteredGames } = useFilterGames(
-    useShallow((state) => ({
-      setSelectedGame: state.useHandleSearchGame,
-      filteredGames: state.filteredGames,
-    })),
-  );
-  const { disabledFilter, setDisabledFilter } = useFiltersActive(
-    useShallow((state) => ({
-      disabledFilter: state.disabledFilter,
-      setDisabledFilter: state.setDisabledFilter,
-    })),
-  );
+  const { setSelectedGame, filteredGames, resetFilter, disabledFilter } =
+    useFilterGames(
+      useShallow((state) => ({
+        setSelectedGame: state.useHandleSearchGame,
+        filteredGames: state.filteredGames,
+        resetFilter: state.resetFilter,
+        disabledFilter: state.disabledFilter,
+      })),
+    );
 
   const isDisabled = disabledFilter !== null && disabledFilter !== "search";
 
@@ -42,24 +38,24 @@ export default function SearchGames() {
     setIsOpenSearchGame(false);
   }
 
-  // useEffect(() => {
-  //   if (searchGame === "" && !isOpenSearchGame) {
-  //     setIsOpenSearchGame(true);
-  //   }
-  // }, [searchGame, isOpenSearchGame]);
+  useEffect(() => {
+    if (searchGame === "" && !isOpenSearchGame) {
+      setIsOpenSearchGame(true);
+    }
+  }, [searchGame, isOpenSearchGame]);
 
-  // useEffect(() => {
-  //   if (disabledFilter === null) {
-  //     setSearchGame("");
-  //   }
-  // }, [disabledFilter]);
+  useEffect(() => {
+    if (disabledFilter === null) {
+      setSearchGame("");
+    }
+  }, [disabledFilter]);
 
   return (
     <Command>
       <CommandInput
         onValueChange={(val) => {
           setSearchGame(val);
-          setDisabledFilter("search");
+          resetFilter("search");
         }}
         value={searchGame}
         placeholder="Search Games..."
