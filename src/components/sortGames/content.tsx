@@ -7,17 +7,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useFilterGames } from "@/store/useFilterGames/state";
-import { useFiltersActive } from "@/store/useFiltersActive/state";
 import { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
 
 export default function SortGames() {
-  const [sortByValue, setSortByValue] = useState<string | null>(null);
-  const handleSortByGame = useFilterGames((state) => state.useHandleSortByGame);
-  const { disabledFilter, setDisabledFilter } = useFiltersActive(
+  const [sortByValue, setSortByValue] = useState<string | undefined>(undefined);
+  const { setSortByGame, resetFilter, disabledFilter } = useFilterGames(
     useShallow((state) => ({
+      setSortByGame: state.useHandleSortByGame,
+      resetFilter: state.resetFilter,
       disabledFilter: state.disabledFilter,
-      setDisabledFilter: state.setDisabledFilter,
     })),
   );
 
@@ -25,8 +24,10 @@ export default function SortGames() {
 
   useEffect(() => {
     if (!sortByValue) return;
-    handleSortByGame(sortByValue);
-  }, [handleSortByGame, sortByValue]);
+    setSortByGame(sortByValue);
+  }, [setSortByGame, sortByValue]);
+
+  const sortValue = disabledFilter === null ? undefined : sortByValue;
 
   return (
     <div className="flex justify-between items-center mb-3">
@@ -34,8 +35,9 @@ export default function SortGames() {
       <Select
         onValueChange={(val) => {
           setSortByValue(val);
-          setDisabledFilter("sort");
+          resetFilter("sort");
         }}
+        value={sortValue}
         disabled={isDisabled}
       >
         <SelectTrigger>

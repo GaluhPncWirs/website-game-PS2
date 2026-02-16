@@ -24,6 +24,7 @@ export default function TagsGames() {
     }
   }, [setHandleByTagGame, activeAlphabet]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (disabledFilter === null) {
       setActiveAlphabet(null);

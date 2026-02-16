@@ -1,6 +1,5 @@
 import { Input } from "../../ui/input";
 import { useFilterGames } from "@/store/useFilterGames/state";
-import { useFiltersActive } from "@/store/useFiltersActive/state";
 import React, { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
 
@@ -28,11 +27,12 @@ export default function GenreGames() {
   );
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
   const isDisabled = disabledFilter !== null && disabledFilter !== "genre";
-  function handleGenreIsCheked(event: Event) {
-    const targetValue = event.target as HTMLInputElement;
-    setFilterByGenre(targetValue.value);
+  function handleGenreIsCheked(event: React.ChangeEvent<HTMLInputElement>) {
+    setSelectedGenre(event.target.value);
+    setFilterByGenre(event.target.value);
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (disabledFilter === null) {
       setSelectedGenre(null);
@@ -58,10 +58,7 @@ export default function GenreGames() {
                 name="genre"
                 value={item}
                 checked={selectedGenre === item}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setSelectedGenre(e.target.value);
-                  handleGenreIsCheked(e);
-                }}
+                onChange={(e) => handleGenreIsCheked(e)}
               />
               <label htmlFor={item}>{item}</label>
             </li>

@@ -56,8 +56,8 @@ export const useFilterGames = create<filterGames>((set) => ({
 
   useHandleTagGame: (valueTag) => {
     set((state) => {
-      const filterByTags = state.allGames.filter((item) =>
-        item.cleanTitle.startsWith(valueTag),
+      const filterByTags = state.allGames.filter((game) =>
+        game.cleanTitle.startsWith(valueTag),
       );
       return {
         selectedTag: valueTag,
@@ -78,7 +78,9 @@ export const useFilterGames = create<filterGames>((set) => ({
         };
       } else if (sortBy === "newest") {
         const sortByNewest = state.allGames
-          .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+          .sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+          )
           .slice(0, 50);
         return {
           sort: sortBy,

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -27,17 +28,17 @@ export default function SearchGames() {
 
   const isDisabled = disabledFilter !== null && disabledFilter !== "search";
 
-  const normalizedSearch = searchGame.toLowerCase();
-
-  useEffect(() => {
+  function handleSearchGame() {
+    const normalizedSearch = searchGame.toLowerCase();
     setSelectedGame(normalizedSearch);
-  }, [setSelectedGame, normalizedSearch]);
+  }
 
   function handleItemSelected(gameItem: dataGamePS2) {
     setSearchGame(gameItem.cleanTitle);
     setIsOpenSearchGame(false);
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (searchGame === "" && !isOpenSearchGame) {
       setIsOpenSearchGame(true);
@@ -51,39 +52,44 @@ export default function SearchGames() {
   }, [disabledFilter]);
 
   return (
-    <Command>
-      <CommandInput
-        onValueChange={(val) => {
-          setSearchGame(val);
-          resetFilter("search");
-        }}
-        value={searchGame}
-        placeholder="Search Games..."
-        disabled={isDisabled}
-        className={`w-full ${isDisabled ? "opacity-50" : ""}`}
-      />
-      {isOpenSearchGame && (
-        <>
-          {searchGame !== "" && (
-            <CommandList ref={listGamesRef}>
-              {filteredGames.length > 0 ? (
-                <CommandGroup>
-                  {filteredGames.map((itemGame: dataGamePS2) => (
-                    <CommandItem
-                      key={itemGame.id}
-                      onSelect={() => handleItemSelected(itemGame)}
-                    >
-                      {itemGame.cleanTitle}
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              ) : (
-                <CommandEmpty>Game Not Found.</CommandEmpty>
-              )}
-            </CommandList>
-          )}
-        </>
-      )}
-    </Command>
+    <div>
+      <Command>
+        <CommandInput
+          onValueChange={(val) => {
+            setSearchGame(val);
+            resetFilter("search");
+          }}
+          value={searchGame}
+          placeholder="Search Games..."
+          disabled={isDisabled}
+          className={`w-full ${isDisabled ? "opacity-50" : ""}`}
+        />
+        {isOpenSearchGame && (
+          <>
+            {searchGame !== "" && (
+              <CommandList ref={listGamesRef}>
+                {filteredGames.length > 0 ? (
+                  <CommandGroup>
+                    {filteredGames.map((itemGame: dataGamePS2) => (
+                      <CommandItem
+                        key={itemGame.id}
+                        onSelect={() => handleItemSelected(itemGame)}
+                      >
+                        {itemGame.cleanTitle}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                ) : (
+                  <CommandEmpty>Game Not Found.</CommandEmpty>
+                )}
+              </CommandList>
+            )}
+          </>
+        )}
+      </Command>
+      <Button onClick={handleSearchGame} className="mt-3">
+        Search
+      </Button>
+    </div>
   );
 }
