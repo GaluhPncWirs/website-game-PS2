@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useShallow } from "zustand/shallow";
 
 export default function SortGames() {
-  const [sortByValue, setSortByValue] = useState<string | undefined>(undefined);
+  const [sortByValue, setSortByValue] = useState<string | null>(null);
   const { setSortByGame, resetFilter, disabledFilter } = useFilterGames(
     useShallow((state) => ({
       setSortByGame: state.useHandleSortByGame,
@@ -27,7 +27,7 @@ export default function SortGames() {
     setSortByGame(sortByValue);
   }, [setSortByGame, sortByValue]);
 
-  const sortValue = disabledFilter === null ? undefined : sortByValue;
+  const isResetFilter = disabledFilter === null ? null : sortByValue;
 
   return (
     <div className="flex justify-between items-center mb-3">
@@ -37,7 +37,7 @@ export default function SortGames() {
           setSortByValue(val);
           resetFilter("sort");
         }}
-        value={sortValue}
+        value={isResetFilter || ""}
         disabled={isDisabled}
       >
         <SelectTrigger>

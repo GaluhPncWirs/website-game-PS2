@@ -36,7 +36,7 @@ export default function GuideEmulator() {
       ) : allGuidesEmu === "ConfigureBiosPS2" ? (
         <>
           <h1 className="text-3xl tracking-wide font-semibold mb-7">
-            Tutorial ConfigureBiosPS2
+            Tutorial Configure Bios PS2
           </h1>
           <StepSetupEmulator numberStep="1">
             <div className="w-2/5">
@@ -77,17 +77,6 @@ export default function GuideEmulator() {
                 dump from your own console (detaild instruction are avaliable in
                 th emulator guide)
               </p>
-              <Link
-                to="https://www.retrostic.com/bios/pcsx2-playstation-2"
-                target="_blank"
-                className="flex items-center justify-center bg-blue-500 text-slate-100 px-5 py-2 font-semibold gap-x-3 rounded-md mt-3 w-44"
-              >
-                <Download />
-                <div>
-                  <h3 className="text-lg">Get Bios</h3>
-                  <h4 className="text-sm">Free Download</h4>
-                </div>
-              </Link>
             </div>
             <div className="flex items-center gap-x-3">
               <img
@@ -112,8 +101,68 @@ export default function GuideEmulator() {
       ) : allGuidesEmu === "ControllerConfig" ? (
         <>
           <h1 className="text-3xl tracking-wide font-semibold mb-7">
-            Tutorial ControllerConfig
+            Tutorial Controller Config
           </h1>
+          <StepSetupEmulator numberStep="1">
+            <div className="w-2/5">
+              <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
+                Download PS2 BIOS
+              </h1>
+              <p className="font-semibold mt-3 text-[#393E46] text-justify">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos
+                ullam laudantium doloribus numquam fugit?
+              </p>
+            </div>
+            <div className="flex items-center gap-x-3">
+              <img
+                src="/images/emulatorGuidePage/setupEmulator/settingBios.png"
+                alt="Tutorial Setup Controller"
+                className="rounded-md max-h-64 bg-top object-contain"
+              />
+            </div>
+          </StepSetupEmulator>
+          <StepSetupEmulator numberStep="2">
+            <div className="w-2/5">
+              <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
+                Active the Mouse / pointer source
+              </h1>
+              <p className="font-semibold mt-3 text-[#393E46] text-justify">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor,
+                expedita? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. A, eligendi?
+              </p>
+            </div>
+            <div className="flex items-center gap-x-3">
+              <img
+                src="/images/emulatorGuidePage/setupController/configController_1.png"
+                alt="Tutorial Setup Controller"
+                className="rounded-md max-h-64 bg-top object-contain"
+              />
+            </div>
+          </StepSetupEmulator>
+          <StepSetupEmulator numberStep="3">
+            <div className="w-2/5">
+              <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
+                Custom every button gamepad became keyboard for control your
+                game
+              </h1>
+              <p className="font-semibold mt-3 text-[#393E46] text-justify">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor,
+                expedita? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. A, eligendi? Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit. Veritatis necessitatibus, quos dolore enim,
+                qui laudantium ratione perferendis sapiente soluta sit minima
+                excepturi reiciendis est ex ab natus molestias facere animi?
+              </p>
+            </div>
+            <div className="flex items-center gap-x-3">
+              <img
+                src="/images/emulatorGuidePage/setupController/configController_2.png"
+                alt="Tutorial Setup Controller"
+                className="rounded-md max-h-64 bg-top object-contain"
+              />
+            </div>
+          </StepSetupEmulator>
           <Link
             to="/EmulatorGuide"
             className="bg-slate-700 text-xl text-white text-center rounded-md py-1 px-8 mt-8 inline-block"
@@ -126,6 +175,66 @@ export default function GuideEmulator() {
           <h1 className="text-3xl tracking-wide font-semibold mb-7">
             Tutorial TroubleshootTips
           </h1>
+          <StepSetupEmulator numberStep="1">
+            <div className="w-2/5">
+              <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
+                Download PS2 BIOS
+              </h1>
+              <p className="font-semibold mt-3 text-[#393E46] text-justify">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos
+                ullam laudantium doloribus numquam fugit?
+              </p>
+            </div>
+            <div className="flex items-center gap-x-3">
+              <img
+                src="/images/emulatorGuidePage/setupEmulator/settingBios.png"
+                alt="Tutorial Setup Controller"
+                className="rounded-md max-h-64 bg-top object-contain"
+              />
+            </div>
+          </StepSetupEmulator>
+          <StepSetupEmulator numberStep="2">
+            <div className="w-2/5">
+              <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
+                Active the Mouse / pointer source
+              </h1>
+              <p className="font-semibold mt-3 text-[#393E46] text-justify">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor,
+                expedita? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. A, eligendi?
+              </p>
+            </div>
+            <div className="flex items-center gap-x-3">
+              <img
+                src="/images/emulatorGuidePage/setupController/configController_1.png"
+                alt="Tutorial Setup Controller"
+                className="rounded-md max-h-64 bg-top object-contain"
+              />
+            </div>
+          </StepSetupEmulator>
+          <StepSetupEmulator numberStep="3">
+            <div className="w-2/5">
+              <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
+                Custom every button gamepad became keyboard for control your
+                game
+              </h1>
+              <p className="font-semibold mt-3 text-[#393E46] text-justify">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor,
+                expedita? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. A, eligendi? Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit. Veritatis necessitatibus, quos dolore enim,
+                qui laudantium ratione perferendis sapiente soluta sit minima
+                excepturi reiciendis est ex ab natus molestias facere animi?
+              </p>
+            </div>
+            <div className="flex items-center gap-x-3">
+              <img
+                src="/images/emulatorGuidePage/setupController/configController_2.png"
+                alt="Tutorial Setup Controller"
+                className="rounded-md max-h-64 bg-top object-contain"
+              />
+            </div>
+          </StepSetupEmulator>
           <Link
             to="/EmulatorGuide"
             className="bg-slate-700 text-xl text-white text-center rounded-md py-1 px-8 mt-8 inline-block"

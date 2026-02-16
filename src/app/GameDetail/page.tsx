@@ -23,35 +23,37 @@ export default function GameDetail() {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className="flex gap-5 flex-col md:flex-row">
+          <div className="flex gap-5 flex-col items-center md:items-start md:flex-row">
             <img
               src={detailGamePS2.url_image}
               alt={detailGamePS2.cleanTitle}
-              className="w-1/3 object-contain"
+              className="object-contain w-11/12 md:w-1/3"
             />
-            <div className="w-2/3">
+            <div className="w-full md:w-2/3">
               <h1 className="text-2xl font-semibold tracking-wide">
                 {detailGamePS2.cleanTitle}
               </h1>
               <div className="mt-3">
                 <div className="flex items-center gap-2 flex-wrap font-medium">
                   <h2 className="flex items-center gap-1.5">
-                    <VenetianMask size={20} /> Genre:{" "}
-                    <span>{detailGamePS2.genre}</span>
-                  </h2>{" "}
-                  |{" "}
-                  <h2 className="flex items-center gap-1.5">
-                    <Heart size={17} /> Rating : {detailGamePS2.rating}
-                  </h2>{" "}
-                  |{" "}
-                  <h2 className="flex items-center gap-1.5">
-                    <Expand size={17} /> Size game: {detailGamePS2.size}
+                    <VenetianMask size={20} />
+                    <span>Genre: {detailGamePS2.genre}</span>|
                   </h2>
-                  |{" "}
                   <h2 className="flex items-center gap-1.5">
-                    <CalendarDays size={17} /> Release date:{" "}
-                    {detailGamePS2.date.replace(/\s*\d{2}:\d{2}/, "")}
-                  </h2>{" "}
+                    <Heart size={17} />
+                    <span>Rating: {detailGamePS2.rating}</span>|
+                  </h2>
+                  <h2 className="flex items-center gap-1.5">
+                    <Expand size={17} />
+                    <span>Size game: {detailGamePS2.size}</span>|
+                  </h2>
+                  <h2 className="flex items-center gap-1.5">
+                    <CalendarDays size={17} />
+                    <span>
+                      Game date added:{" "}
+                      {detailGamePS2.date.replace(/\s*\d{2}:\d{2}/, "")}
+                    </span>
+                  </h2>
                 </div>
                 <div className="mt-3">
                   <h2 className="text-lg font-medium">Game Description</h2>
