@@ -1,12 +1,14 @@
 import type React from "react";
 
-export default function StepSetupEmulator({
-  numberStep,
-  children,
-}: {
+type propsStepGuidePS2 = {
   numberStep: string;
   children: React.ReactNode;
-}) {
+  srcImg: string;
+  altImg: string;
+};
+
+export default function StepSetupGuidesPS2(props: propsStepGuidePS2) {
+  const { numberStep, children, srcImg, altImg } = props;
   return (
     <div className="flex gap-x-5">
       <div className="basis-[7%] lg:basis-[5%] flex justify-center">
@@ -16,7 +18,14 @@ export default function StepSetupEmulator({
           </div>
         </div>
       </div>
-      <div className="basis-full mt-7 flex gap-x-10">{children}</div>
+      <div className="basis-full mt-7 flex flex-col gap-7 md:flex-row">
+        <div className="w-full md:w-2/5">{children}</div>
+        <img
+          src={srcImg}
+          alt={altImg}
+          className="w-full md:w-1/2 max-h-80 object-contain"
+        />
+      </div>
     </div>
   );
 }
