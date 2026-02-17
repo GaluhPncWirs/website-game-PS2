@@ -1,5 +1,6 @@
 import { useGetDataGamePS2 } from "@/hooks/useDataGamePS2";
 import RootLayout from "@/layout/rootLayout/content";
+import type { dataGamePS2 } from "@/types/dataGamePS2";
 import {
   CalendarDays,
   Download,
@@ -10,9 +11,11 @@ import {
 import { Link, useParams } from "react-router-dom";
 
 export default function GameDetail() {
-  const { detailGame } = useParams();
+  const { pagePath, detailGame } = useParams();
   const { gamesPS2, isLoading } = useGetDataGamePS2();
-  const detailGamePS2 = gamesPS2.find((match: any) => match.id === detailGame);
+  const detailGamePS2 = gamesPS2.find(
+    (match: dataGamePS2) => match.id === detailGame,
+  );
 
   return (
     <RootLayout
@@ -20,7 +23,33 @@ export default function GameDetail() {
       descPage="Gameplay, story, and gaming experience offered."
     >
       {isLoading ? (
-        <h1>Loading...</h1>
+        <>
+          <div className="flex gap-5 flex-col items-center md:items-start md:flex-row animate-pulse">
+            <div className="w-11/12 md:w-1/3 bg-slate-300 rounded-md h-105" />
+            <div className="w-full md:w-2/3">
+              <h1 className="w-1/2 h-8 bg-slate-300 rounded-md"></h1>
+              <div className="mt-3">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <div className="w-1/6 h-8 bg-slate-300 rounded-md"></div>|
+                  <div className="w-1/5 h-8 bg-slate-300 rounded-md"></div>|
+                  <div className="w-1/6 h-8 bg-slate-300 rounded-md"></div>|
+                  <div className="w-1/4 h-8 bg-slate-300 rounded-md"></div>|
+                </div>
+                <div className="mt-3">
+                  <h2 className="w-1/4 h-8 bg-slate-300 rounded-md mb-5"></h2>
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <p
+                      key={i}
+                      className="w-full h-5 bg-slate-300 rounded-md mb-2"
+                    ></p>
+                  ))}
+                </div>
+                <div className="w-48 rounded-md mt-5 bg-slate-300 h-10"></div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 bg-slate-300 rounded-md w-32 h-10"></div>
+        </>
       ) : (
         <>
           <div className="flex gap-5 flex-col items-center md:items-start md:flex-row">
@@ -76,7 +105,13 @@ export default function GameDetail() {
             </div>
           </div>
           <Link
-            to="/AllGames"
+            to={
+              pagePath === "HomePage"
+                ? "/HomePage"
+                : pagePath === "AllGames"
+                  ? "/AllGames"
+                  : "#"
+            }
             className="mt-8 inline-block text-xl font-semibold tracking-wide bg-slate-800 text-slate-100 px-9 py-1.5 rounded-md"
           >
             Back

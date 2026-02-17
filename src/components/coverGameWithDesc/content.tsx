@@ -27,7 +27,7 @@ export default function CoverGameWithDesc(props: propsCoverGameWithDesc) {
           </div>
         </div>
         <Link
-          to={`/GameDetail/${idGame}`}
+          to={`/AllGames/GameDetail/${idGame}`}
           className="w-full mt-3 bg-blue-500 text-slate-100 font-semibold
           tracking-wide text-center py-2 rounded-md"
         >

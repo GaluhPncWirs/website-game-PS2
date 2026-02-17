@@ -51,7 +51,7 @@ export default function Contact() {
         Other methods
       </h1>
       <div className="flex flex-col gap-5 items-center sm:flex-row">
-        <div className="flex flex-col items-center justify-center gap-y-3 w-full sm:max-w-xs bg-blue-100 p-5 rounded-md">
+        <div className="flex flex-col justify-center gap-y-3 w-full sm:max-w-xs bg-blue-100 p-5 rounded-md">
           <img
             src="/images/contact/discord.png"
             alt="Discord"
@@ -63,11 +63,14 @@ export default function Contact() {
             </h2>
             <p>Connect with our community and get support in real time.</p>
           </div>
-          <Link to="#" className="font-semibold text-lg tracking-wide">
+          <Link
+            to="#"
+            className="font-semibold text-lg tracking-wide border border-slate-800 px-5 py-1 rounded-md w-fit"
+          >
             Join us
           </Link>
         </div>
-        <div className="flex flex-col items-center justify-center gap-y-3 w-full sm:max-w-xs bg-blue-100 p-5 rounded-md">
+        <div className="flex flex-col justify-center gap-y-3 w-full sm:max-w-xs bg-blue-100 p-5 rounded-md">
           <img
             src="/images/footer/facebook.png"
             alt="Facebook"
@@ -79,7 +82,10 @@ export default function Contact() {
             </h2>
             <p>Send us a message on our facebook page for quick</p>
           </div>
-          <Link to="#" className="font-semibold text-lg tracking-wide">
+          <Link
+            to="#"
+            className="font-semibold text-lg tracking-wide border border-slate-800 px-5 py-1 rounded-md w-fit"
+          >
             Join us
           </Link>
         </div>

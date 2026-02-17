@@ -13,7 +13,7 @@ export default function CoverGames(props: propsCoverGame) {
   const { srcImg, altImg, rating, genre, idGame } = props;
   return (
     <Link
-      to={`/GameDetail/${idGame}`}
+      to={`/HomePage/GameDetail/${idGame}`}
       className="relative cursor-pointer group min-w-40 md:min-w-60"
     >
       <img src={srcImg} alt={altImg} className="w-full" />
