@@ -34,7 +34,7 @@ export default function EmulatorGuide() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-5 gap-5">
             <CardPS2Emulator
-              emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
+              emulatorImg="/images/global/PCSX2-logo.png"
               emulatorAlt="PCSX2"
               nameEmulator="PCSX2"
               descEmulator="the most popular PS2 emulator offering the best compability
@@ -43,21 +43,21 @@ export default function EmulatorGuide() {
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
                   <img
-                    src="/images/emulatorGuidePage/windows.png"
+                    src="/images/emulatorGuide/windows.png"
                     alt="Windows"
                     className="size-7"
                   />
                 </Button>
                 <Button variant="secondary">
                   <img
-                    src="/images/emulatorGuidePage/macOS.png"
+                    src="/images/emulatorGuide/macOS.png"
                     alt="Windows"
                     className="size-8"
                   />
                 </Button>
                 <Button variant="secondary">
                   <img
-                    src="/images/emulatorGuidePage/linux.png"
+                    src="/images/emulatorGuide/linux.png"
                     alt="Windows"
                     className="size-7"
                   />
@@ -71,7 +71,7 @@ export default function EmulatorGuide() {
               </Link>
             </CardPS2Emulator>
             <CardPS2Emulator
-              emulatorImg="/images/emulatorGuidePage/aetherSX2-logo.png"
+              emulatorImg="/images/global/aetherSX2-logo.png"
               emulatorAlt="AetherSX2"
               nameEmulator="AetherSX2"
               descEmulator="A powerful mobile PS2 emulator with high compatibility, solid performance, and broad customization options."
@@ -79,7 +79,7 @@ export default function EmulatorGuide() {
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
                   <img
-                    src="/images/emulatorGuidePage/android.png"
+                    src="/images/emulatorGuide/android.png"
                     alt="Windows"
                     className="size-7"
                   />
@@ -93,7 +93,7 @@ export default function EmulatorGuide() {
               </Link>
             </CardPS2Emulator>
             <CardPS2Emulator
-              emulatorImg="/images/emulatorGuidePage/damonPS2-logo.png"
+              emulatorImg="/images/global/damonPS2-logo.png"
               emulatorAlt="DamonPS2"
               nameEmulator="DamonPS2"
               descEmulator="A high-performance PS2 emulator with fast gameplay, hardware acceleration, and flexible graphics settings."
@@ -101,7 +101,7 @@ export default function EmulatorGuide() {
               <div className="flex flex-wrap gap-3">
                 <Button variant="secondary">
                   <img
-                    src="/images/emulatorGuidePage/android.png"
+                    src="/images/emulatorGuide/android.png"
                     alt="Windows"
                     className="size-7"
                   />
@@ -132,7 +132,7 @@ export default function EmulatorGuide() {
             <GuidesEmulator guides="ConfigureBiosPS2">
               <div className="flex items-center gap-x-5">
                 <img
-                  src="/images/emulatorGuidePage/bios.png"
+                  src="/images/emulatorGuide/bios.png"
                   alt="Bios"
                   className="size-9"
                 />

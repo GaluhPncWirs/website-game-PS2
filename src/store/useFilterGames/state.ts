@@ -8,7 +8,7 @@ type filterGames = {
   selectedGenre: dataGamePS2[] | null;
   sort: string | null;
   disabledFilter: string | null;
-  setGames: (games: dataGamePS2) => void;
+  setGames: (games: dataGamePS2[]) => void;
   useHandleSearchGame: (query: string) => void;
   useHandleGenreGame: (valueGenre: any) => void;
   useHandleTagGame: (valueTag: string) => void;

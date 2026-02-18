@@ -7,7 +7,7 @@ export default function SetupEmulator() {
     <>
       <StepSetupGuidesPS2
         numberStep="1"
-        srcImg="/images/emulatorGuidePage/setupEmulator/download-PCSX2.jpeg"
+        srcImg="/images/emulatorGuide/setupEmulator/download-PCSX2.jpeg"
         altImg="Tutorial Setup Emulator"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -32,7 +32,7 @@ export default function SetupEmulator() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="2"
-        srcImg="/images/emulatorGuidePage/setupEmulator/settingBios.png"
+        srcImg="/images/emulatorGuide/setupEmulator/settingBios.png"
         altImg="Tutorial Setup Emulator"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -47,7 +47,7 @@ export default function SetupEmulator() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="3"
-        srcImg="/images/emulatorGuidePage/setupEmulator/chooseBios.png"
+        srcImg="/images/emulatorGuide/setupEmulator/chooseBios.png"
         altImg="Tutorial Setup Emulator"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -72,7 +72,7 @@ export default function SetupEmulator() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="4"
-        srcImg="/images/emulatorGuidePage/setupEmulator/addGameToEmulator.png"
+        srcImg="/images/emulatorGuide/setupEmulator/addGameToEmulator.png"
         altImg="Tutorial Setup Emulator"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -86,7 +86,7 @@ export default function SetupEmulator() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="5"
-        srcImg="/images/emulatorGuidePage/setupEmulator/resultInGame.png"
+        srcImg="/images/emulatorGuide/setupEmulator/resultInGame.png"
         altImg="Tutorial Setup Emulator"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">

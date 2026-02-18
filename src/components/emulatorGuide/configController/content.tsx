@@ -5,7 +5,7 @@ export default function ConfigController() {
     <>
       <StepSetupGuidesPS2
         numberStep="1"
-        srcImg="/images/emulatorGuidePage/setupEmulator/settingBios.png"
+        srcImg="/images/emulatorGuide/setupEmulator/settingBios.png"
         altImg="Tutorial Setup Controller"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -20,7 +20,7 @@ export default function ConfigController() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="2"
-        srcImg="/images/emulatorGuidePage/setupController/configController_1.png"
+        srcImg="/images/emulatorGuide/setupController/configController_1.png"
         altImg="Tutorial Setup Controller"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -34,7 +34,7 @@ export default function ConfigController() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="3"
-        srcImg="/images/emulatorGuidePage/setupController/configController_2.png"
+        srcImg="/images/emulatorGuide/setupController/configController_2.png"
         altImg="Tutorial Setup Controller"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">

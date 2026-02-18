@@ -11,6 +11,7 @@ import type React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { useShallow } from "zustand/shallow";
 import Skeleton from "./skeleton";
+import type { dataGamePS2 } from "@/types/dataGamePS2";
 
 type propsGamesPopular = {
   itemPerPage: number;
@@ -19,6 +20,15 @@ type propsGamesPopular = {
 
 export default function GamesPopular(props: propsGamesPopular) {
   const { itemPerPage, children } = props;
+  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
+
+  useEffect(() => {
+    let isMounted = true;
+    handleGetData(isMounted);
+    return () => {
+      isMounted = false;
+    };
+  }, [handleGetData]);
   const { dataGames, isLoading } = useGetDataPS2(
     useShallow((props) => ({
       dataGames: props.dataGames,
@@ -27,7 +37,7 @@ export default function GamesPopular(props: propsGamesPopular) {
   );
   const gamePopular = useMemo(() => {
     const sortByTopRate = dataGames.filter(
-      (gameTopRate) => Number(gameTopRate.rating) > 9.0,
+      (gameTopRate: dataGamePS2) => Number(gameTopRate.rating) > 9.0,
     );
     return sortByTopRate;
   }, [dataGames]);

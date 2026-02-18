@@ -36,6 +36,7 @@ export default function AllGamePS2(props: propsAllGamePS2) {
       isMounted = false;
     };
   }, [handleGetData]);
+
   const { dataGames, isLoading } = useGetDataPS2(
     useShallow((state) => ({
       dataGames: state.dataGames,

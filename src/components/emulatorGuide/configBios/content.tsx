@@ -7,7 +7,7 @@ export default function ConfigBios() {
     <>
       <StepSetupGuidesPS2
         numberStep="1"
-        srcImg="/images/emulatorGuidePage/setupBIOS/download_BIOS.jpeg"
+        srcImg="/images/emulatorGuide/setupBIOS/download_BIOS.jpeg"
         altImg="Tutorial Setup BIOS"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -30,7 +30,7 @@ export default function ConfigBios() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="2"
-        srcImg="/images/emulatorGuidePage/setupEmulator/settingBios.png"
+        srcImg="/images/emulatorGuide/setupEmulator/settingBios.png"
         altImg="Tutorial Setup BIOS"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">
@@ -44,7 +44,7 @@ export default function ConfigBios() {
       </StepSetupGuidesPS2>
       <StepSetupGuidesPS2
         numberStep="3"
-        srcImg="/images/emulatorGuidePage/setupEmulator/chooseBios.png"
+        srcImg="/images/emulatorGuide/setupEmulator/chooseBios.png"
         altImg="Tutorial Setup BIOS"
       >
         <h1 className="font-bold text-2xl tracking-wide text-[#003366] 2xl:text-3xl">

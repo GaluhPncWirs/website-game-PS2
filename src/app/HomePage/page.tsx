@@ -12,23 +12,12 @@ import { Link } from "react-router-dom";
 import CardPS2Emulator from "@/layout/cardPS2Emulator/content";
 import { useMediaQuery } from "@/hooks/mediaQuery";
 import GamesPopular from "@/components/gamesPopular/content";
-import { useGetDataPS2 } from "@/store/useGetDataPS2/state";
-import { useEffect } from "react";
 
 export default function HomePage() {
   const chunkedGamesPopular = useHandlePagination(
     (state) => state.dataGamesPopular,
   );
   const isMediaQuery = useMediaQuery();
-  const handleGetData = useGetDataPS2((state) => state.setHandleGetData);
-
-  useEffect(() => {
-    let isMounted = true;
-    handleGetData(isMounted);
-    return () => {
-      isMounted = false;
-    };
-  }, [handleGetData]);
 
   return (
     <RootLayout
@@ -67,7 +56,7 @@ export default function HomePage() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-5 gap-5">
           <CardPS2Emulator
-            emulatorImg="/images/emulatorGuidePage/PCSX2-logo.png"
+            emulatorImg="/images/global/PCSX2-logo.png"
             emulatorAlt="PCSX2"
             nameEmulator="PCSX2"
             descEmulator="The most popular and compatible PS2 emulator for multiple
@@ -82,7 +71,7 @@ export default function HomePage() {
             </Link>
           </CardPS2Emulator>
           <CardPS2Emulator
-            emulatorImg="/images/emulatorGuidePage/aetherSX2-logo.png"
+            emulatorImg="/images/global/aetherSX2-logo.png"
             emulatorAlt="AetherSX2"
             nameEmulator="AetherSX2"
             descEmulator="Android exclusive emulator focused on high compability and performance"
@@ -96,7 +85,7 @@ export default function HomePage() {
             </Link>
           </CardPS2Emulator>
           <CardPS2Emulator
-            emulatorImg="/images/emulatorGuidePage/damonPS2-logo.png"
+            emulatorImg="/images/global/damonPS2-logo.png"
             emulatorAlt="DamonPS2"
             nameEmulator="DamonPS2"
             descEmulator="the most popular PS2 emulator offering the best compability"

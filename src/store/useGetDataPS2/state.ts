@@ -1,10 +1,9 @@
 import { getDataGamePS2 } from "@/lib/firebase/services";
-import type { dataGamePS2 } from "@/types/dataGamePS2";
 import { create } from "zustand";
 
 type getDataPS2 = {
   isLoading: boolean;
-  dataGames: dataGamePS2[];
+  dataGames: any;
   setHandleGetData: (isMounted: boolean) => void;
 };
 
